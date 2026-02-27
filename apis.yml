@@ -1,0 +1,126 @@
+name: Allianz Future Cloud Platform
+description: APIs for the Allianz Future Cloud Platform providing insurance and financial services capabilities
+image: https://www.allianz.com/etc/designs/allianz/img/logo.png
+created: '2024-01-15'
+modified: '2024-01-15'
+specificationVersion: '0.18'
+url: https://developer.allianz.com/apis.json
+apis:
+- name: Policy Management API
+  description: API for managing insurance policies, including creation, updates, and retrieval of policy information
+  image: https://www.allianz.com/etc/designs/allianz/img/logo.png
+  humanURL: https://developer.allianz.com/policy-management
+  baseURL: https://api.allianz.com/v1/policies
+  tags:
+  - Insurance
+  - Policies
+  - Policy Management
+  properties:
+  - type: Documentation
+    url: https://developer.allianz.com/docs/policy-management
+  - type: OpenAPI
+    url: https://api.allianz.com/specs/policy-management-v1.yaml
+  - type: Authentication
+    url: https://developer.allianz.com/docs/authentication
+  - type: Rate Limits
+    url: https://developer.allianz.com/docs/rate-limits
+- name: Claims Processing API
+  description: API for submitting, tracking, and managing insurance claims
+  image: https://www.allianz.com/etc/designs/allianz/img/logo.png
+  humanURL: https://developer.allianz.com/claims-processing
+  baseURL: https://api.allianz.com/v1/claims
+  tags:
+  - Insurance
+  - Claims
+  - Processing
+  properties:
+  - type: Documentation
+    url: https://developer.allianz.com/docs/claims-processing
+  - type: OpenAPI
+    url: https://api.allianz.com/specs/claims-processing-v1.yaml
+  - type: Authentication
+    url: https://developer.allianz.com/docs/authentication
+  - type: Webhooks
+    url: https://developer.allianz.com/docs/webhooks/claims
+- name: Customer Management API
+  description: API for managing customer data, profiles, and preferences
+  image: https://www.allianz.com/etc/designs/allianz/img/logo.png
+  humanURL: https://developer.allianz.com/customer-management
+  baseURL: https://api.allianz.com/v1/customers
+  tags:
+  - Customers
+  - CRM
+  - Profile Management
+  properties:
+  - type: Documentation
+    url: https://developer.allianz.com/docs/customer-management
+  - type: OpenAPI
+    url: https://api.allianz.com/specs/customer-management-v1.yaml
+  - type: Authentication
+    url: https://developer.allianz.com/docs/authentication
+  - type: Privacy Policy
+    url: https://www.allianz.com/privacy-policy
+- name: Quote Generation API
+  description: API for generating insurance quotes based on customer requirements and risk assessment
+  image: https://www.allianz.com/etc/designs/allianz/img/logo.png
+  humanURL: https://developer.allianz.com/quote-generation
+  baseURL: https://api.allianz.com/v1/quotes
+  tags:
+  - Insurance
+  - Quotes
+  - Pricing
+  properties:
+  - type: Documentation
+    url: https://developer.allianz.com/docs/quote-generation
+  - type: OpenAPI
+    url: https://api.allianz.com/specs/quote-generation-v1.yaml
+  - type: Authentication
+    url: https://developer.allianz.com/docs/authentication
+  - type: Sandbox
+    url: https://sandbox.allianz.com/v1/quotes
+- name: Payment Processing API
+  description: API for handling premium payments, refunds, and payment history
+  image: https://www.allianz.com/etc/designs/allianz/img/logo.png
+  humanURL: https://developer.allianz.com/payment-processing
+  baseURL: https://api.allianz.com/v1/payments
+  tags:
+  - Payments
+  - Billing
+  - Transactions
+  properties:
+  - type: Documentation
+    url: https://developer.allianz.com/docs/payment-processing
+  - type: OpenAPI
+    url: https://api.allianz.com/specs/payment-processing-v1.yaml
+  - type: Authentication
+    url: https://developer.allianz.com/docs/authentication
+  - type: PCI Compliance
+    url: https://developer.allianz.com/docs/pci-compliance
+common:
+- type: Portal
+  url: https://developer.allianz.com
+- type: Getting Started
+  url: https://developer.allianz.com/getting-started
+- type: Authentication
+  url: https://developer.allianz.com/docs/authentication
+- type: SDKs
+  url: https://developer.allianz.com/sdks
+- type: Status Page
+  url: https://status.allianz.com
+- type: Support
+  url: https://developer.allianz.com/support
+- type: Terms of Service
+  url: https://developer.allianz.com/terms
+- type: Contact
+  url: https://developer.allianz.com/contact
+- type: Blog
+  url: https://developer.allianz.com/blog
+maintainers:
+- FN: Allianz API Team
+  email: api-support@allianz.com
+  url: https://developer.allianz.com
+tags:
+- Insurance
+- Financial Services
+- Cloud Platform
+- Enterprise
