@@ -3,10 +3,10 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/apis.yml
 name: Allianz Future Cloud Platform
 tags:
-  - Insurance
-  - Financial Services
   - Cloud Platform
   - Enterprise
+  - Financial Services
+  - Insurance
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 description: >-
