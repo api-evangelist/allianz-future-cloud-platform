@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-schema/platform-services-service-list-schema.json",
+  "title": "ServiceList",
+  "description": "Paginated list of platform services",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of registered services",
+      "example": 62
+    },
+    "items": {
+      "type": "array",
+      "description": "List of service records",
+      "items": {
+        "$ref": "#/components/schemas/Service"
+      }
+    }
+  }
+}

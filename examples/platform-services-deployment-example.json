@@ -1,0 +1,11 @@
+{
+  "deployment_id": "dep-500789",
+  "service_id": "svc-500123",
+  "version": "2.5.1",
+  "image": "allianz/policy-service:2.5.1",
+  "status": "succeeded",
+  "strategy": "rolling",
+  "deployed_at": "2026-04-15T14:30:00Z",
+  "deployed_by": "argo-cd",
+  "initiated_at": "2026-04-19T10:30:00Z"
+}

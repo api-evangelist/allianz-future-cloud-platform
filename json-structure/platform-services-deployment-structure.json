@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-deployment-structure.json",
+  "description": "A service deployment record on the platform",
+  "properties": {
+    "deployment_id": {
+      "type": "string",
+      "description": "Unique identifier for the deployment",
+      "example": "dep-500789"
+    },
+    "service_id": {
+      "type": "string",
+      "description": "Service this deployment belongs to",
+      "example": "svc-500123"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version being deployed",
+      "example": "2.5.1"
+    },
+    "image": {
+      "type": "string",
+      "description": "Container image with tag",
+      "example": "allianz/policy-service:2.5.1"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current deployment status",
+      "enum": [
+        "in_progress",
+        "succeeded",
+        "failed",
+        "rolled_back"
+      ],
+      "example": "succeeded"
+    },
+    "strategy": {
+      "type": "string",
+      "description": "Deployment strategy used",
+      "enum": [
+        "rolling",
+        "blue_green",
+        "canary"
+      ],
+      "example": "rolling"
+    },
+    "deployed_at": {
+      "type": "datetime",
+      "description": "Timestamp when the deployment completed",
+      "example": "2026-04-15T14:30:00Z"
+    },
+    "deployed_by": {
+      "type": "string",
+      "description": "Actor that triggered the deployment",
+      "example": "argo-cd"
+    },
+    "initiated_at": {
+      "type": "datetime",
+      "description": "Timestamp when the deployment was initiated",
+      "example": "2026-04-19T10:30:00Z"
+    }
+  },
+  "name": "Deployment"
+}

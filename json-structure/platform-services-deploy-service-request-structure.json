@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-deploy-service-request-structure.json",
+  "description": "Request body for triggering a service deployment",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Version tag to deploy",
+      "example": "2.6.0"
+    },
+    "image": {
+      "type": "string",
+      "description": "Container image with version tag",
+      "example": "allianz/policy-service:2.6.0"
+    },
+    "strategy": {
+      "type": "string",
+      "description": "Deployment strategy",
+      "enum": [
+        "rolling",
+        "blue_green",
+        "canary"
+      ],
+      "default": "rolling",
+      "example": "rolling"
+    }
+  },
+  "required": [
+    "version",
+    "image"
+  ],
+  "name": "DeployServiceRequest"
+}

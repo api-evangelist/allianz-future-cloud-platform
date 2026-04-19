@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-namespace-list-structure.json",
+  "description": "List of platform namespaces",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of namespaces",
+      "example": 12
+    },
+    "items": {
+      "type": "array",
+      "description": "List of namespace records",
+      "items": {
+        "$ref": "#/components/schemas/Namespace"
+      }
+    }
+  },
+  "name": "NamespaceList"
+}

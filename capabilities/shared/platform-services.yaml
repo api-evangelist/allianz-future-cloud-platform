@@ -1,0 +1,298 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Allianz Future Cloud Platform Services API"
+  description: "Platform engineering APIs for service registration, deployment management, namespace administration, observability, and infrastructure provisioning on the Allianz Kubernetes platform."
+  tags:
+    - Cloud Platform
+    - Platform Engineering
+    - Kubernetes
+    - DevOps
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ALLIANZ_PLATFORM_CLIENT_ID: ALLIANZ_PLATFORM_CLIENT_ID
+      ALLIANZ_PLATFORM_CLIENT_SECRET: ALLIANZ_PLATFORM_CLIENT_SECRET
+
+capability:
+  consumes:
+    - type: http
+      namespace: allianz-platform-services
+      baseUri: https://platform.allianz.com/api/v1
+      description: "Allianz Future Cloud Platform Services API"
+      authentication:
+        type: bearer
+        token: "{{ALLIANZ_PLATFORM_ACCESS_TOKEN}}"
+      resources:
+        - name: services
+          path: /services
+          description: "Microservice registration and management"
+          operations:
+            - name: list-services
+              method: GET
+              description: "List registered microservices on the platform"
+              inputParameters:
+                - name: namespace
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by Kubernetes namespace"
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by service status"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: register-service
+              method: POST
+              description: "Register a new microservice on the platform"
+              inputParameters:
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Service name"
+                - name: namespace
+                  in: body
+                  type: string
+                  required: true
+                  description: "Target namespace"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: get-service
+              method: GET
+              description: "Get details for a specific service"
+              inputParameters:
+                - name: service_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Service identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: deployments
+          path: /services/{service_id}/deployments
+          description: "Service deployment management"
+          operations:
+            - name: list-deployments
+              method: GET
+              description: "List deployment history for a service"
+              inputParameters:
+                - name: service_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Service identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: deploy-service
+              method: POST
+              description: "Trigger a new deployment for a service"
+              inputParameters:
+                - name: service_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Service identifier"
+                - name: version
+                  in: body
+                  type: string
+                  required: true
+                  description: "Version to deploy"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: namespaces
+          path: /namespaces
+          description: "Kubernetes namespace management"
+          operations:
+            - name: list-namespaces
+              method: GET
+              description: "List all platform namespaces"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: metrics
+          path: /observability/metrics
+          description: "Platform metrics and observability"
+          operations:
+            - name: get-metrics
+              method: GET
+              description: "Get platform metrics for a service or global view"
+              inputParameters:
+                - name: service_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Service to get metrics for"
+                - name: time_range
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Time range in minutes"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: infrastructure
+          path: /infrastructure/resources
+          description: "Infrastructure provisioning"
+          operations:
+            - name: provision-resource
+              method: POST
+              description: "Provision a cloud infrastructure resource"
+              inputParameters:
+                - name: resource_type
+                  in: body
+                  type: string
+                  required: true
+                  description: "Resource type: redis, rds, msk, s3"
+                - name: name
+                  in: body
+                  type: string
+                  required: true
+                  description: "Resource name"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: allianz-platform-rest
+      resources:
+        - path: /v1/services
+          name: services
+          description: "Service management endpoints"
+          operations:
+            - method: GET
+              name: list-services
+              description: "List platform services"
+              call: "allianz-platform-services.list-services"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: register-service
+              description: "Register a new service"
+              call: "allianz-platform-services.register-service"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: allianz-platform-mcp
+      transport: http
+      tools:
+        - name: list-services
+          description: "List microservices registered on the Allianz Future Cloud Platform"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-platform-services.list-services"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: register-service
+          description: "Register a new microservice on the cloud platform"
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "allianz-platform-services.register-service"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-service
+          description: "Get details and current status of a platform service"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-platform-services.get-service"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-deployments
+          description: "List deployment history for a platform service"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-platform-services.list-deployments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: deploy-service
+          description: "Trigger a new deployment for a service with a specific version"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "allianz-platform-services.deploy-service"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-namespaces
+          description: "List Kubernetes namespaces managed on the platform"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-platform-services.list-namespaces"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-metrics
+          description: "Get platform metrics including CPU, memory, request rate, and latency"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "allianz-platform-services.get-metrics"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: provision-resource
+          description: "Provision a cloud infrastructure resource (Redis, RDS, MSK, S3)"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "allianz-platform-services.provision-resource"
+          outputParameters:
+            - type: object
+              mapping: "$."

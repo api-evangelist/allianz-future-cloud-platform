@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-deployment-list-structure.json",
+  "description": "Paginated list of deployment records",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of deployments",
+      "example": 45
+    },
+    "items": {
+      "type": "array",
+      "description": "List of deployment records",
+      "items": {
+        "$ref": "#/components/schemas/Deployment"
+      }
+    }
+  },
+  "name": "DeploymentList"
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-schema/platform-services-infrastructure-resource-schema.json",
+  "title": "InfrastructureResource",
+  "description": "A provisioned cloud infrastructure resource",
+  "type": "object",
+  "properties": {
+    "resource_id": {
+      "type": "string",
+      "description": "Unique identifier for the resource",
+      "example": "infra-500222"
+    },
+    "resource_type": {
+      "type": "string",
+      "description": "Type of infrastructure resource",
+      "example": "redis"
+    },
+    "name": {
+      "type": "string",
+      "description": "Resource name",
+      "example": "policy-cache"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Associated Kubernetes namespace",
+      "example": "insurance-policy"
+    },
+    "status": {
+      "type": "string",
+      "description": "Provisioning status",
+      "enum": [
+        "provisioning",
+        "ready",
+        "failed",
+        "decommissioned"
+      ],
+      "example": "provisioning"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when provisioning was initiated",
+      "example": "2026-04-19T10:30:00Z"
+    }
+  }
+}

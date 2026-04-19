@@ -1,0 +1,5 @@
+{
+  "version": "2.6.0",
+  "image": "allianz/policy-service:2.6.0",
+  "strategy": "rolling"
+}

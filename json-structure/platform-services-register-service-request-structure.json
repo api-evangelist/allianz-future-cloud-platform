@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-register-service-request-structure.json",
+  "description": "Request body for registering a new service",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Kebab-case service name",
+      "example": "claims-service"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Target Kubernetes namespace",
+      "example": "insurance-claims"
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary programming language",
+      "enum": [
+        "kotlin",
+        "java",
+        "nodejs",
+        "python"
+      ],
+      "example": "kotlin"
+    },
+    "repository_url": {
+      "type": "uri",
+      "description": "Git repository URL for the service",
+      "example": "https://github.com/allianz/claims-service"
+    },
+    "resource_requirements": {
+      "$ref": "#/components/schemas/ResourceRequirements"
+    }
+  },
+  "required": [
+    "name",
+    "namespace",
+    "language",
+    "repository_url"
+  ],
+  "name": "RegisterServiceRequest"
+}

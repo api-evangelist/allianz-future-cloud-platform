@@ -1,0 +1,9 @@
+{
+  "service_id": "svc-500123",
+  "time_range_minutes": 60,
+  "cpu_utilization": 42.5,
+  "memory_utilization": 68.2,
+  "request_rate": 1250.0,
+  "error_rate": 0.12,
+  "p99_latency_ms": 145
+}

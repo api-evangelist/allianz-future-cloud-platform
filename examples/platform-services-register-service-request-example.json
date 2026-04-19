@@ -1,0 +1,7 @@
+{
+  "name": "claims-service",
+  "namespace": "insurance-claims",
+  "language": "kotlin",
+  "repository_url": "https://github.com/allianz/claims-service",
+  "resource_requirements": "sample-resource_requirements"
+}

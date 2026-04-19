@@ -7,19 +7,163 @@ tags:
   - Enterprise
   - Financial Services
   - Insurance
+  - Platform Engineering
+  - Kubernetes
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 description: >-
-  APIs for the Allianz Future Cloud Platform providing insurance and financial
-  services capabilities including policy management, claims processing, and
-  customer management.
+  The Allianz Future Cloud Platform is an internal developer platform powering
+  cloud-native insurance microservices at Allianz. Built on Kubernetes and AWS,
+  it provides platform engineering capabilities including service deployment,
+  infrastructure management, observability, and GitOps automation across
+  Allianz's global insurance operations.
 created: '2024-01-15'
-modified: '2026-03-16'
+modified: '2026-04-19'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: allianz-future-cloud-platform:platform-services-api
+    name: Allianz Future Cloud Platform Services API
+    tags:
+      - Cloud Platform
+      - Platform Engineering
+      - Microservices
+      - DevOps
+    properties:
+      - url: https://architecture.cncf.io/architectures/allianz/
+        type: Documentation
+      - url: https://www.cncf.io/case-studies/allianz/
+        type: Documentation
+      - url: openapi/allianz-future-cloud-platform-services.yaml
+        type: OpenAPI
+      - url: json-schema/platform-services-service-schema.json
+        type: JSONSchema
+      - url: json-schema/platform-services-deployment-schema.json
+        type: JSONSchema
+      - url: json-structure/platform-services-service-structure.json
+        type: JSONStructure
+      - url: json-ld/allianz-future-cloud-platform-context.jsonld
+        type: JSONLD
+      - url: examples/platform-services-service-example.json
+        type: Example
+      - url: examples/platform-services-deployment-example.json
+        type: Example
+    description: >-
+      Platform engineering APIs for managing cloud-native services on the
+      Allianz Future Cloud Platform. Provides capabilities for service
+      registration, deployment management, observability configuration, and
+      infrastructure provisioning across Kubernetes clusters.
+    humanURL: https://architecture.cncf.io/architectures/allianz/
+    baseURL: https://platform.allianz.com/api/v1
+
+  - aid: allianz-future-cloud-platform:policy-microservice-api
+    name: Allianz Insurance Policy Microservice API
+    tags:
+      - Insurance
+      - Policy Management
+      - Microservices
+    properties:
+      - url: https://www.allianz.com/en/about-us/technology.html
+        type: Documentation
+      - url: openapi/allianz-future-cloud-platform-policy.yaml
+        type: OpenAPI
+      - url: json-schema/platform-policy-policy-schema.json
+        type: JSONSchema
+      - url: json-structure/platform-policy-policy-structure.json
+        type: JSONStructure
+      - url: examples/platform-policy-policy-example.json
+        type: Example
+    description: >-
+      Insurance policy microservice running on the Allianz Future Cloud Platform.
+      Provides REST APIs for policy lifecycle management including creation,
+      endorsements, renewals, and cancellations built with Kotlin and Java on
+      Kubernetes.
+    humanURL: https://www.allianz.com/en/about-us/technology.html
+    baseURL: https://platform.allianz.com/insurance/policy/v1
+
 common:
   - url: https://www.allianz.com/
     type: Website
+  - url: https://github.com/allianz
+    type: GitHubOrganization
+  - url: https://architecture.cncf.io/architectures/allianz/
+    type: Documentation
+  - url: rules/allianz-future-cloud-platform-spectral-rules.yml
+    type: SpectralRules
+  - url: vocabulary/allianz-future-cloud-platform-vocabulary.yaml
+    type: Vocabulary
+  - url: capabilities/cloud-platform-operations.yaml
+    type: NaftikoCapability
+  - type: Features
+    data:
+      - name: Kubernetes Platform Engineering
+        description: >-
+          Internal developer platform built on Kubernetes (EKS) providing
+          standardized deployment, scaling, and orchestration for insurance
+          microservices.
+      - name: GitOps Deployment
+        description: >-
+          ArgoCD and Tekton-based CI/CD pipelines enabling GitOps workflows
+          for continuous delivery of insurance applications.
+      - name: Infrastructure as Code
+        description: >-
+          Terraform and Crossplane-based infrastructure management enabling
+          repeatable, auditable cloud resource provisioning.
+      - name: Observability Stack
+        description: >-
+          Prometheus, Grafana, and OpenTelemetry based observability platform
+          providing metrics, tracing, and alerting for platform services.
+      - name: Multi-tenant Architecture
+        description: >-
+          Namespace-level multi-tenancy supporting multiple insurance product
+          teams on shared Kubernetes infrastructure.
+      - name: Event Streaming
+        description: >-
+          AWS MSK (Managed Kafka) for high-throughput event streaming between
+          insurance microservices and downstream consumers.
+  - type: UseCases
+    data:
+      - name: Insurance Microservice Deployment
+        description: >-
+          Deploy and manage Kotlin and Java insurance microservices on the
+          platform with standardized CI/CD pipelines and GitOps workflows.
+      - name: Platform Onboarding
+        description: >-
+          Onboard new insurance product teams onto the shared Kubernetes
+          platform with pre-configured namespaces and RBAC policies.
+      - name: Observability and Monitoring
+        description: >-
+          Configure monitoring dashboards and alerting for insurance services
+          using the platform's built-in Prometheus and Grafana stack.
+      - name: Infrastructure Provisioning
+        description: >-
+          Provision cloud infrastructure resources using Terraform and
+          Crossplane through the platform's infrastructure API.
+  - type: Integrations
+    data:
+      - name: Amazon Web Services
+        description: >-
+          Primary cloud provider with EKS, MSK, ElastiCache Redis, and
+          storage services powering the platform.
+      - name: ArgoCD
+        description: >-
+          GitOps continuous delivery for declarative application deployment
+          and state synchronization.
+      - name: Terraform
+        description: >-
+          Infrastructure as code for cloud resource provisioning and
+          management integrated with Atlantis for PR automation.
+      - name: Crossplane
+        description: >-
+          Multi-cloud resource management extending Kubernetes for
+          cloud-agnostic infrastructure provisioning.
+      - name: OpenTelemetry
+        description: >-
+          Distributed tracing and metrics collection across microservices
+          for observability and performance analysis.
+      - name: Apache Kafka
+        description: >-
+          AWS MSK for event-driven communication between insurance
+          microservices and downstream systems.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

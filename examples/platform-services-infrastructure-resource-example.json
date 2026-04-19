@@ -1,0 +1,8 @@
+{
+  "resource_id": "infra-500222",
+  "resource_type": "redis",
+  "name": "policy-cache",
+  "namespace": "insurance-policy",
+  "status": "provisioning",
+  "created_at": "2026-04-19T10:30:00Z"
+}

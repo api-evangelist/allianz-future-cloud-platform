@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-schema/platform-services-service-schema.json",
+  "title": "Service",
+  "description": "A microservice registered on the Allianz Future Cloud Platform",
+  "type": "object",
+  "properties": {
+    "service_id": {
+      "type": "string",
+      "description": "Unique identifier for the service",
+      "example": "svc-500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Kebab-case service name",
+      "example": "policy-service"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Kubernetes namespace the service belongs to",
+      "example": "insurance-policy"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current operational status",
+      "enum": [
+        "running",
+        "pending",
+        "failed",
+        "stopped"
+      ],
+      "example": "running"
+    },
+    "replicas": {
+      "type": "integer",
+      "description": "Number of running pod replicas",
+      "example": 3
+    },
+    "version": {
+      "type": "string",
+      "description": "Currently deployed version",
+      "example": "2.5.1"
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary programming language",
+      "enum": [
+        "kotlin",
+        "java",
+        "nodejs",
+        "python"
+      ],
+      "example": "kotlin"
+    },
+    "repository_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Git repository URL",
+      "example": "https://github.com/allianz/policy-service"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the service was registered",
+      "example": "2026-01-01T00:00:00Z"
+    },
+    "modified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the service was last updated",
+      "example": "2026-04-15T14:30:00Z"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "service_id": "svc-500123",
+  "name": "policy-service",
+  "namespace": "insurance-policy",
+  "status": "running",
+  "replicas": 3,
+  "version": "2.5.1",
+  "language": "kotlin",
+  "repository_url": "https://github.com/allianz/policy-service",
+  "created_at": "2026-01-01T00:00:00Z",
+  "modified_at": "2026-04-15T14:30:00Z"
+}

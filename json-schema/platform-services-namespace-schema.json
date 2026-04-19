@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-schema/platform-services-namespace-schema.json",
+  "title": "Namespace",
+  "description": "A Kubernetes namespace managed on the platform",
+  "type": "object",
+  "properties": {
+    "namespace_id": {
+      "type": "string",
+      "description": "Unique identifier for the namespace",
+      "example": "ns-500111"
+    },
+    "name": {
+      "type": "string",
+      "description": "Kubernetes namespace name",
+      "example": "insurance-policy"
+    },
+    "team": {
+      "type": "string",
+      "description": "Team owning this namespace",
+      "example": "policy-team"
+    },
+    "service_count": {
+      "type": "integer",
+      "description": "Number of services in this namespace",
+      "example": 8
+    },
+    "status": {
+      "type": "string",
+      "description": "Namespace status",
+      "enum": [
+        "active",
+        "provisioning",
+        "decommissioning"
+      ],
+      "example": "active"
+    }
+  }
+}

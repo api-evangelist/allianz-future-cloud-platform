@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-metrics-response-structure.json",
+  "description": "Platform metrics for a service or overall platform",
+  "properties": {
+    "service_id": {
+      "type": "string",
+      "description": "Service the metrics apply to (null for platform-wide)",
+      "example": "svc-500123"
+    },
+    "time_range_minutes": {
+      "type": "integer",
+      "description": "Time range the metrics cover",
+      "example": 60
+    },
+    "cpu_utilization": {
+      "type": "double",
+      "description": "Average CPU utilization percentage",
+      "example": 42.5
+    },
+    "memory_utilization": {
+      "type": "double",
+      "description": "Average memory utilization percentage",
+      "example": 68.2
+    },
+    "request_rate": {
+      "type": "double",
+      "description": "Requests per minute",
+      "example": 1250.0
+    },
+    "error_rate": {
+      "type": "double",
+      "description": "Error rate as a percentage",
+      "example": 0.12
+    },
+    "p99_latency_ms": {
+      "type": "integer",
+      "description": "99th percentile response latency in milliseconds",
+      "example": 145
+    }
+  },
+  "name": "MetricsResponse"
+}

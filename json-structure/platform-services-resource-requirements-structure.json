@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-resource-requirements-structure.json",
+  "description": "Kubernetes resource requests and limits",
+  "properties": {
+    "cpu": {
+      "type": "string",
+      "description": "CPU resource request in Kubernetes units",
+      "example": "500m"
+    },
+    "memory": {
+      "type": "string",
+      "description": "Memory resource request in Kubernetes units",
+      "example": "512Mi"
+    },
+    "cpu_limit": {
+      "type": "string",
+      "description": "CPU resource limit",
+      "example": "1000m"
+    },
+    "memory_limit": {
+      "type": "string",
+      "description": "Memory resource limit",
+      "example": "1Gi"
+    }
+  },
+  "name": "ResourceRequirements"
+}

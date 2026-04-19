@@ -1,0 +1,162 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "allianz": "https://platform.allianz.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Deployment": "allianz:Deployment",
+    "MetricsResponse": "allianz:MetricsResponse",
+    "InfrastructureResource": "allianz:InfrastructureResource",
+    "NamespaceList": "allianz:NamespaceList",
+    "DeployServiceRequest": "allianz:DeployServiceRequest",
+    "DeploymentList": "allianz:DeploymentList",
+    "ResourceRequirements": "allianz:ResourceRequirements",
+    "Service": "allianz:Service",
+    "RegisterServiceRequest": "allianz:RegisterServiceRequest",
+    "ServiceList": "allianz:ServiceList",
+    "ProvisionResourceRequest": "allianz:ProvisionResourceRequest",
+    "Namespace": "allianz:Namespace",
+    "deploymentId": {
+      "@id": "allianz:deployment_id",
+      "@type": "xsd:string"
+    },
+    "serviceId": {
+      "@id": "allianz:service_id",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "allianz:version",
+      "@type": "xsd:string"
+    },
+    "image": {
+      "@id": "allianz:image",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "allianz:status",
+      "@type": "xsd:string"
+    },
+    "strategy": {
+      "@id": "allianz:strategy",
+      "@type": "xsd:string"
+    },
+    "deployedAt": {
+      "@id": "allianz:deployed_at",
+      "@type": "xsd:dateTime"
+    },
+    "deployedBy": {
+      "@id": "allianz:deployed_by",
+      "@type": "xsd:string"
+    },
+    "initiatedAt": {
+      "@id": "allianz:initiated_at",
+      "@type": "xsd:dateTime"
+    },
+    "timeRangeMinutes": {
+      "@id": "allianz:time_range_minutes",
+      "@type": "xsd:integer"
+    },
+    "cpuUtilization": {
+      "@id": "allianz:cpu_utilization",
+      "@type": "xsd:double"
+    },
+    "memoryUtilization": {
+      "@id": "allianz:memory_utilization",
+      "@type": "xsd:double"
+    },
+    "requestRate": {
+      "@id": "allianz:request_rate",
+      "@type": "xsd:double"
+    },
+    "errorRate": {
+      "@id": "allianz:error_rate",
+      "@type": "xsd:double"
+    },
+    "p99LatencyMs": {
+      "@id": "allianz:p99_latency_ms",
+      "@type": "xsd:integer"
+    },
+    "resourceId": {
+      "@id": "allianz:resource_id",
+      "@type": "xsd:string"
+    },
+    "resourceType": {
+      "@id": "allianz:resource_type",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "allianz:name",
+      "@type": "xsd:string"
+    },
+    "namespace": {
+      "@id": "allianz:namespace",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "allianz:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "total": {
+      "@id": "allianz:total",
+      "@type": "xsd:integer"
+    },
+    "items": {
+      "@id": "allianz:items",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "cpu": {
+      "@id": "allianz:cpu",
+      "@type": "xsd:string"
+    },
+    "memory": {
+      "@id": "allianz:memory",
+      "@type": "xsd:string"
+    },
+    "cpuLimit": {
+      "@id": "allianz:cpu_limit",
+      "@type": "xsd:string"
+    },
+    "memoryLimit": {
+      "@id": "allianz:memory_limit",
+      "@type": "xsd:string"
+    },
+    "replicas": {
+      "@id": "allianz:replicas",
+      "@type": "xsd:integer"
+    },
+    "language": {
+      "@id": "allianz:language",
+      "@type": "xsd:string"
+    },
+    "repositoryUrl": {
+      "@id": "allianz:repository_url",
+      "@type": "@id"
+    },
+    "modifiedAt": {
+      "@id": "allianz:modified_at",
+      "@type": "xsd:dateTime"
+    },
+    "resourceRequirements": {
+      "@id": "allianz:resource_requirements",
+      "@type": "xsd:string"
+    },
+    "configuration": {
+      "@id": "allianz:configuration",
+      "@type": "xsd:string"
+    },
+    "namespaceId": {
+      "@id": "allianz:namespace_id",
+      "@type": "xsd:string"
+    },
+    "team": {
+      "@id": "allianz:team",
+      "@type": "xsd:string"
+    },
+    "serviceCount": {
+      "@id": "allianz:service_count",
+      "@type": "xsd:integer"
+    }
+  }
+}

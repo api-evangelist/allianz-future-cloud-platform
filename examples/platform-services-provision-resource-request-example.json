@@ -1,0 +1,9 @@
+{
+  "resource_type": "redis",
+  "name": "policy-cache",
+  "namespace": "insurance-policy",
+  "configuration": {
+    "instance_type": "cache.t3.medium",
+    "engine_version": "7.0"
+  }
+}

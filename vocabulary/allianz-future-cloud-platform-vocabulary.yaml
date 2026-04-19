@@ -1,0 +1,317 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Allianz Future Cloud Platform"
+  description: "Vocabulary taxonomy for the Allianz Future Cloud Platform APIs covering microservice management, deployment automation, observability, and infrastructure provisioning."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: allianz-platform-services
+      version: "1.0.0"
+      baseUrl: https://platform.allianz.com/api/v1
+      status: active
+      description: "Platform engineering API for the Allianz Future Cloud Platform"
+
+  resources:
+    - name: services
+      description: "Microservices registered and managed on the cloud platform"
+      api: allianz-platform-services
+      actions:
+        - list-services
+        - register-service
+        - get-service
+
+    - name: deployments
+      description: "Service deployment records and deployment triggers"
+      api: allianz-platform-services
+      actions:
+        - list-deployments
+        - deploy-service
+
+    - name: namespaces
+      description: "Kubernetes namespaces for team isolation and resource organization"
+      api: allianz-platform-services
+      actions:
+        - list-namespaces
+
+    - name: metrics
+      description: "Platform observability metrics for services and infrastructure"
+      api: allianz-platform-services
+      actions:
+        - get-metrics
+
+    - name: infrastructure
+      description: "Cloud infrastructure resources provisioned for microservices"
+      api: allianz-platform-services
+      actions:
+        - provision-resource
+
+  actions:
+    - name: list
+      description: "Retrieve a paginated collection of resources"
+      http_method: GET
+      pattern: read
+
+    - name: get
+      description: "Retrieve a specific resource by identifier"
+      http_method: GET
+      pattern: read
+
+    - name: register
+      description: "Register a new entity on the platform"
+      http_method: POST
+      pattern: write
+
+    - name: deploy
+      description: "Trigger a deployment to update a running service"
+      http_method: POST
+      pattern: write
+
+    - name: provision
+      description: "Provision a new cloud infrastructure resource"
+      http_method: POST
+      pattern: write
+
+  schemas:
+    core:
+      - name: Service
+        description: "Microservice registered on the Allianz Future Cloud Platform"
+        key_properties:
+          - service_id
+          - name
+          - namespace
+          - status
+          - version
+          - language
+
+      - name: Deployment
+        description: "Service deployment record with version and status"
+        key_properties:
+          - deployment_id
+          - service_id
+          - version
+          - status
+          - strategy
+          - deployed_at
+
+      - name: MetricsResponse
+        description: "Platform observability metrics for a service"
+        key_properties:
+          - cpu_utilization
+          - memory_utilization
+          - request_rate
+          - error_rate
+          - p99_latency_ms
+
+    supporting:
+      - name: Namespace
+        description: "Kubernetes namespace with team ownership"
+        key_properties:
+          - name
+          - team
+          - service_count
+
+      - name: InfrastructureResource
+        description: "Provisioned cloud infrastructure resource"
+        key_properties:
+          - resource_id
+          - resource_type
+          - name
+          - status
+
+      - name: ResourceRequirements
+        description: "Kubernetes CPU and memory resource requests"
+        key_properties:
+          - cpu
+          - memory
+
+  parameters:
+    filters:
+      - name: namespace
+        description: "Filter by Kubernetes namespace"
+        type: string
+      - name: status
+        description: "Filter by resource status"
+        type: string
+      - name: service_id
+        description: "Filter by service identifier"
+        type: string
+      - name: time_range
+        description: "Metrics time range in minutes"
+        type: integer
+
+    pagination:
+      - name: limit
+        description: "Maximum number of records to return"
+        type: integer
+
+  enums:
+    service_statuses:
+      - running
+      - pending
+      - failed
+      - stopped
+
+    service_languages:
+      - kotlin
+      - java
+      - nodejs
+      - python
+
+    deployment_statuses:
+      - in_progress
+      - succeeded
+      - failed
+      - rolled_back
+
+    deployment_strategies:
+      - rolling
+      - blue_green
+      - canary
+
+    namespace_statuses:
+      - active
+      - provisioning
+      - decommissioning
+
+    resource_types:
+      - redis
+      - rds
+      - msk
+      - s3
+
+    resource_statuses:
+      - provisioning
+      - ready
+      - failed
+      - decommissioned
+
+  authentication:
+    schemes:
+      - type: OAuth2
+        flow: clientCredentials
+        tokenUrl: https://platform.allianz.com/oauth2/token
+        scopes:
+          - services:read
+          - services:write
+          - deployments:read
+          - deployments:write
+          - observability:read
+          - infrastructure:write
+
+capability:
+  workflows:
+    - name: Cloud Platform Operations
+      file: capabilities/cloud-platform-operations.yaml
+      description: "End-to-end platform operations for DevOps teams"
+      apis_combined:
+        - allianz-platform-services
+      tool_count: 8
+      personas:
+        - Platform Engineer
+        - DevOps Engineer
+        - Insurance Product Developer
+
+  personas:
+    - id: platform-engineer
+      name: Platform Engineer
+      description: "Engineer responsible for maintaining and evolving the Allianz Future Cloud Platform"
+      workflows:
+        - Cloud Platform Operations
+
+    - id: devops-engineer
+      name: DevOps Engineer
+      description: "Engineer deploying and operating insurance microservices on the platform"
+      workflows:
+        - Cloud Platform Operations
+
+    - id: insurance-product-developer
+      name: Insurance Product Developer
+      description: "Developer building insurance microservices on the Allianz Future Cloud Platform"
+      workflows:
+        - Cloud Platform Operations
+
+  domains:
+    - name: Service Management
+      description: "Registration and lifecycle management of insurance microservices"
+      resources:
+        - services
+        - namespaces
+
+    - name: Deployment Automation
+      description: "GitOps-based deployment pipelines for microservice updates"
+      resources:
+        - deployments
+
+    - name: Observability
+      description: "Metrics, monitoring, and alerting for platform health"
+      resources:
+        - metrics
+
+    - name: Infrastructure Provisioning
+      description: "Cloud resource provisioning for microservice dependencies"
+      resources:
+        - infrastructure
+
+  namespaces:
+    consumed:
+      - name: allianz-platform-services
+        baseUri: https://platform.allianz.com/api/v1
+    rest_exposed:
+      - name: allianz-cloud-platform-ops-api
+        port: 8080
+    mcp_exposed:
+      - name: allianz-cloud-platform-ops-mcp
+        port: 9090
+
+  binds:
+    - name: ALLIANZ_PLATFORM_CLIENT_ID
+      description: "OAuth2 client ID for platform API access"
+      workflows:
+        - Cloud Platform Operations
+    - name: ALLIANZ_PLATFORM_CLIENT_SECRET
+      description: "OAuth2 client secret for platform API access"
+      workflows:
+        - Cloud Platform Operations
+
+crossReference:
+  - resource: services
+    operations:
+      - list-services
+      - register-service
+      - get-service
+    workflows:
+      - Cloud Platform Operations
+    personas:
+      - Platform Engineer
+      - Insurance Product Developer
+
+  - resource: deployments
+    operations:
+      - list-deployments
+      - deploy-service
+    workflows:
+      - Cloud Platform Operations
+    personas:
+      - DevOps Engineer
+      - Insurance Product Developer
+
+  - resource: metrics
+    operations:
+      - get-metrics
+    workflows:
+      - Cloud Platform Operations
+    personas:
+      - Platform Engineer
+      - DevOps Engineer
+
+  - resource: infrastructure
+    operations:
+      - provision-resource
+    workflows:
+      - Cloud Platform Operations
+    personas:
+      - Platform Engineer
+      - Insurance Product Developer

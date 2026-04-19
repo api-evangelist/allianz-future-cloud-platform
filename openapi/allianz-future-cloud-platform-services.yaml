@@ -1,0 +1,873 @@
+openapi: 3.0.3
+info:
+  title: Allianz Future Cloud Platform Services API
+  description: >-
+    Platform engineering APIs for managing cloud-native services on the Allianz
+    Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation,
+    providing service registration, deployment management, observability, and
+    infrastructure provisioning for insurance microservices.
+  version: 1.0.0
+  contact:
+    name: Allianz Platform Engineering
+    url: https://architecture.cncf.io/architectures/allianz/
+  x-generated-from: documentation
+servers:
+  - url: https://platform.allianz.com/api/v1
+    description: Allianz Future Cloud Platform production API
+security:
+  - OAuth2: []
+tags:
+  - name: Services
+    description: Service registration and management operations
+  - name: Deployments
+    description: Deployment lifecycle management operations
+  - name: Namespaces
+    description: Kubernetes namespace management operations
+  - name: Observability
+    description: Monitoring, metrics, and alerting configuration operations
+  - name: Infrastructure
+    description: Infrastructure provisioning and management operations
+paths:
+  /services:
+    get:
+      operationId: listServices
+      summary: Allianz Future Cloud Platform List Services
+      description: List all registered microservices on the platform with their status and metadata.
+      tags:
+        - Services
+      parameters:
+        - name: namespace
+          in: query
+          required: false
+          description: Filter services by Kubernetes namespace
+          schema:
+            type: string
+          example: insurance-policy
+        - name: status
+          in: query
+          required: false
+          description: Filter services by deployment status
+          schema:
+            type: string
+            enum:
+              - running
+              - pending
+              - failed
+              - stopped
+          example: running
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of services to return
+          schema:
+            type: integer
+            default: 50
+          example: 50
+      responses:
+        '200':
+          description: Services retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceList'
+              examples:
+                ListServices200Example:
+                  summary: Default listServices 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 62
+                    items:
+                      - service_id: "svc-500123"
+                        name: policy-service
+                        namespace: insurance-policy
+                        status: running
+                        replicas: 3
+                        version: "2.5.1"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    post:
+      operationId: registerService
+      summary: Allianz Future Cloud Platform Register Service
+      description: Register a new microservice on the Allianz Future Cloud Platform.
+      tags:
+        - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterServiceRequest'
+            examples:
+              RegisterServiceRequestExample:
+                summary: Default registerService request
+                x-microcks-default: true
+                value:
+                  name: claims-service
+                  namespace: insurance-claims
+                  language: kotlin
+                  repository_url: "https://github.com/allianz/claims-service"
+                  resource_requirements:
+                    cpu: "500m"
+                    memory: "512Mi"
+      responses:
+        '201':
+          description: Service registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                RegisterService201Example:
+                  summary: Default registerService 201 response
+                  x-microcks-default: true
+                  value:
+                    service_id: "svc-500456"
+                    name: claims-service
+                    namespace: insurance-claims
+                    status: pending
+                    created_at: "2026-04-19T10:00:00Z"
+        '400':
+          description: Invalid service configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /services/{service_id}:
+    get:
+      operationId: getService
+      summary: Allianz Future Cloud Platform Get Service
+      description: Retrieve details and status of a specific microservice.
+      tags:
+        - Services
+      parameters:
+        - name: service_id
+          in: path
+          required: true
+          description: Unique identifier of the service
+          schema:
+            type: string
+          example: "svc-500123"
+      responses:
+        '200':
+          description: Service retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                GetService200Example:
+                  summary: Default getService 200 response
+                  x-microcks-default: true
+                  value:
+                    service_id: "svc-500123"
+                    name: policy-service
+                    namespace: insurance-policy
+                    status: running
+                    replicas: 3
+                    version: "2.5.1"
+                    created_at: "2026-01-01T00:00:00Z"
+        '404':
+          description: Service not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /services/{service_id}/deployments:
+    get:
+      operationId: listDeployments
+      summary: Allianz Future Cloud Platform List Deployments
+      description: Retrieve the deployment history for a specific service.
+      tags:
+        - Deployments
+      parameters:
+        - name: service_id
+          in: path
+          required: true
+          description: Unique identifier of the service
+          schema:
+            type: string
+          example: "svc-500123"
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of deployments to return
+          schema:
+            type: integer
+            default: 20
+          example: 20
+      responses:
+        '200':
+          description: Deployments retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentList'
+              examples:
+                ListDeployments200Example:
+                  summary: Default listDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 45
+                    items:
+                      - deployment_id: "dep-500789"
+                        service_id: "svc-500123"
+                        version: "2.5.1"
+                        status: succeeded
+                        deployed_at: "2026-04-15T14:30:00Z"
+                        deployed_by: "argo-cd"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+    post:
+      operationId: deployService
+      summary: Allianz Future Cloud Platform Deploy Service
+      description: Trigger a new deployment for a service with a specified version.
+      tags:
+        - Deployments
+      parameters:
+        - name: service_id
+          in: path
+          required: true
+          description: Unique identifier of the service
+          schema:
+            type: string
+          example: "svc-500123"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeployServiceRequest'
+            examples:
+              DeployServiceRequestExample:
+                summary: Default deployService request
+                x-microcks-default: true
+                value:
+                  version: "2.6.0"
+                  image: "allianz/policy-service:2.6.0"
+                  strategy: rolling
+      responses:
+        '202':
+          description: Deployment initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+              examples:
+                DeployService202Example:
+                  summary: Default deployService 202 response
+                  x-microcks-default: true
+                  value:
+                    deployment_id: "dep-500890"
+                    service_id: "svc-500123"
+                    version: "2.6.0"
+                    status: in_progress
+                    initiated_at: "2026-04-19T10:30:00Z"
+        '400':
+          description: Invalid deployment configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /namespaces:
+    get:
+      operationId: listNamespaces
+      summary: Allianz Future Cloud Platform List Namespaces
+      description: List all Kubernetes namespaces managed on the platform.
+      tags:
+        - Namespaces
+      responses:
+        '200':
+          description: Namespaces retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceList'
+              examples:
+                ListNamespaces200Example:
+                  summary: Default listNamespaces 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 12
+                    items:
+                      - namespace_id: "ns-500111"
+                        name: insurance-policy
+                        team: policy-team
+                        service_count: 8
+                        status: active
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /observability/metrics:
+    get:
+      operationId: getMetrics
+      summary: Allianz Future Cloud Platform Get Metrics
+      description: Retrieve platform metrics including service health, resource utilization, and throughput.
+      tags:
+        - Observability
+      parameters:
+        - name: service_id
+          in: query
+          required: false
+          description: Filter metrics by service identifier
+          schema:
+            type: string
+          example: "svc-500123"
+        - name: time_range
+          in: query
+          required: false
+          description: Time range for metrics in minutes
+          schema:
+            type: integer
+            default: 60
+          example: 60
+      responses:
+        '200':
+          description: Metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+              examples:
+                GetMetrics200Example:
+                  summary: Default getMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    service_id: "svc-500123"
+                    time_range_minutes: 60
+                    cpu_utilization: 42.5
+                    memory_utilization: 68.2
+                    request_rate: 1250.0
+                    error_rate: 0.12
+                    p99_latency_ms: 145
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+  /infrastructure/resources:
+    post:
+      operationId: provisionResource
+      summary: Allianz Future Cloud Platform Provision Resource
+      description: Provision a cloud infrastructure resource (RDS, Redis, MSK) using Crossplane.
+      tags:
+        - Infrastructure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisionResourceRequest'
+            examples:
+              ProvisionResourceRequestExample:
+                summary: Default provisionResource request
+                x-microcks-default: true
+                value:
+                  resource_type: redis
+                  name: policy-cache
+                  namespace: insurance-policy
+                  configuration:
+                    instance_type: cache.t3.medium
+                    engine_version: "7.0"
+      responses:
+        '202':
+          description: Resource provisioning initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureResource'
+              examples:
+                ProvisionResource202Example:
+                  summary: Default provisionResource 202 response
+                  x-microcks-default: true
+                  value:
+                    resource_id: "infra-500222"
+                    resource_type: redis
+                    name: policy-cache
+                    namespace: insurance-policy
+                    status: provisioning
+                    created_at: "2026-04-19T10:30:00Z"
+        '400':
+          description: Invalid resource configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 for Allianz internal platform API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://platform.allianz.com/oauth2/token
+          scopes:
+            services:read: Read service definitions
+            services:write: Register and manage services
+            deployments:read: Read deployment history
+            deployments:write: Trigger deployments
+            observability:read: Access platform metrics
+            infrastructure:write: Provision infrastructure resources
+
+  schemas:
+    Service:
+      title: Service
+      type: object
+      description: A microservice registered on the Allianz Future Cloud Platform
+      properties:
+        service_id:
+          type: string
+          description: Unique identifier for the service
+          example: "svc-500123"
+        name:
+          type: string
+          description: Kebab-case service name
+          example: policy-service
+        namespace:
+          type: string
+          description: Kubernetes namespace the service belongs to
+          example: insurance-policy
+        status:
+          type: string
+          description: Current operational status
+          enum:
+            - running
+            - pending
+            - failed
+            - stopped
+          example: running
+        replicas:
+          type: integer
+          description: Number of running pod replicas
+          example: 3
+        version:
+          type: string
+          description: Currently deployed version
+          example: "2.5.1"
+        language:
+          type: string
+          description: Primary programming language
+          enum:
+            - kotlin
+            - java
+            - nodejs
+            - python
+          example: kotlin
+        repository_url:
+          type: string
+          format: uri
+          description: Git repository URL
+          example: "https://github.com/allianz/policy-service"
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the service was registered
+          example: "2026-01-01T00:00:00Z"
+        modified_at:
+          type: string
+          format: date-time
+          description: Timestamp when the service was last updated
+          example: "2026-04-15T14:30:00Z"
+
+    ServiceList:
+      title: ServiceList
+      type: object
+      description: Paginated list of platform services
+      properties:
+        total:
+          type: integer
+          description: Total number of registered services
+          example: 62
+        items:
+          type: array
+          description: List of service records
+          items:
+            $ref: '#/components/schemas/Service'
+
+    RegisterServiceRequest:
+      title: RegisterServiceRequest
+      type: object
+      description: Request body for registering a new service
+      required:
+        - name
+        - namespace
+        - language
+        - repository_url
+      properties:
+        name:
+          type: string
+          description: Kebab-case service name
+          example: claims-service
+        namespace:
+          type: string
+          description: Target Kubernetes namespace
+          example: insurance-claims
+        language:
+          type: string
+          description: Primary programming language
+          enum:
+            - kotlin
+            - java
+            - nodejs
+            - python
+          example: kotlin
+        repository_url:
+          type: string
+          format: uri
+          description: Git repository URL for the service
+          example: "https://github.com/allianz/claims-service"
+        resource_requirements:
+          $ref: '#/components/schemas/ResourceRequirements'
+
+    ResourceRequirements:
+      title: ResourceRequirements
+      type: object
+      description: Kubernetes resource requests and limits
+      properties:
+        cpu:
+          type: string
+          description: CPU resource request in Kubernetes units
+          example: "500m"
+        memory:
+          type: string
+          description: Memory resource request in Kubernetes units
+          example: "512Mi"
+        cpu_limit:
+          type: string
+          description: CPU resource limit
+          example: "1000m"
+        memory_limit:
+          type: string
+          description: Memory resource limit
+          example: "1Gi"
+
+    Deployment:
+      title: Deployment
+      type: object
+      description: A service deployment record on the platform
+      properties:
+        deployment_id:
+          type: string
+          description: Unique identifier for the deployment
+          example: "dep-500789"
+        service_id:
+          type: string
+          description: Service this deployment belongs to
+          example: "svc-500123"
+        version:
+          type: string
+          description: Version being deployed
+          example: "2.5.1"
+        image:
+          type: string
+          description: Container image with tag
+          example: "allianz/policy-service:2.5.1"
+        status:
+          type: string
+          description: Current deployment status
+          enum:
+            - in_progress
+            - succeeded
+            - failed
+            - rolled_back
+          example: succeeded
+        strategy:
+          type: string
+          description: Deployment strategy used
+          enum:
+            - rolling
+            - blue_green
+            - canary
+          example: rolling
+        deployed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the deployment completed
+          example: "2026-04-15T14:30:00Z"
+        deployed_by:
+          type: string
+          description: Actor that triggered the deployment
+          example: "argo-cd"
+        initiated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the deployment was initiated
+          example: "2026-04-19T10:30:00Z"
+
+    DeploymentList:
+      title: DeploymentList
+      type: object
+      description: Paginated list of deployment records
+      properties:
+        total:
+          type: integer
+          description: Total number of deployments
+          example: 45
+        items:
+          type: array
+          description: List of deployment records
+          items:
+            $ref: '#/components/schemas/Deployment'
+
+    DeployServiceRequest:
+      title: DeployServiceRequest
+      type: object
+      description: Request body for triggering a service deployment
+      required:
+        - version
+        - image
+      properties:
+        version:
+          type: string
+          description: Version tag to deploy
+          example: "2.6.0"
+        image:
+          type: string
+          description: Container image with version tag
+          example: "allianz/policy-service:2.6.0"
+        strategy:
+          type: string
+          description: Deployment strategy
+          enum:
+            - rolling
+            - blue_green
+            - canary
+          default: rolling
+          example: rolling
+
+    Namespace:
+      title: Namespace
+      type: object
+      description: A Kubernetes namespace managed on the platform
+      properties:
+        namespace_id:
+          type: string
+          description: Unique identifier for the namespace
+          example: "ns-500111"
+        name:
+          type: string
+          description: Kubernetes namespace name
+          example: insurance-policy
+        team:
+          type: string
+          description: Team owning this namespace
+          example: policy-team
+        service_count:
+          type: integer
+          description: Number of services in this namespace
+          example: 8
+        status:
+          type: string
+          description: Namespace status
+          enum:
+            - active
+            - provisioning
+            - decommissioning
+          example: active
+
+    NamespaceList:
+      title: NamespaceList
+      type: object
+      description: List of platform namespaces
+      properties:
+        total:
+          type: integer
+          description: Total number of namespaces
+          example: 12
+        items:
+          type: array
+          description: List of namespace records
+          items:
+            $ref: '#/components/schemas/Namespace'
+
+    MetricsResponse:
+      title: MetricsResponse
+      type: object
+      description: Platform metrics for a service or overall platform
+      properties:
+        service_id:
+          type: string
+          description: Service the metrics apply to (null for platform-wide)
+          example: "svc-500123"
+        time_range_minutes:
+          type: integer
+          description: Time range the metrics cover
+          example: 60
+        cpu_utilization:
+          type: number
+          format: double
+          description: Average CPU utilization percentage
+          example: 42.5
+        memory_utilization:
+          type: number
+          format: double
+          description: Average memory utilization percentage
+          example: 68.2
+        request_rate:
+          type: number
+          format: double
+          description: Requests per minute
+          example: 1250.0
+        error_rate:
+          type: number
+          format: double
+          description: Error rate as a percentage
+          example: 0.12
+        p99_latency_ms:
+          type: integer
+          description: 99th percentile response latency in milliseconds
+          example: 145
+
+    ProvisionResourceRequest:
+      title: ProvisionResourceRequest
+      type: object
+      description: Request body for provisioning an infrastructure resource
+      required:
+        - resource_type
+        - name
+        - namespace
+      properties:
+        resource_type:
+          type: string
+          description: Type of infrastructure resource to provision
+          enum:
+            - redis
+            - rds
+            - msk
+            - s3
+          example: redis
+        name:
+          type: string
+          description: Name for the infrastructure resource
+          example: policy-cache
+        namespace:
+          type: string
+          description: Namespace the resource will be associated with
+          example: insurance-policy
+        configuration:
+          type: object
+          description: Resource-specific configuration parameters
+          example:
+            instance_type: cache.t3.medium
+            engine_version: "7.0"
+
+    InfrastructureResource:
+      title: InfrastructureResource
+      type: object
+      description: A provisioned cloud infrastructure resource
+      properties:
+        resource_id:
+          type: string
+          description: Unique identifier for the resource
+          example: "infra-500222"
+        resource_type:
+          type: string
+          description: Type of infrastructure resource
+          example: redis
+        name:
+          type: string
+          description: Resource name
+          example: policy-cache
+        namespace:
+          type: string
+          description: Associated Kubernetes namespace
+          example: insurance-policy
+        status:
+          type: string
+          description: Provisioning status
+          enum:
+            - provisioning
+            - ready
+            - failed
+            - decommissioned
+          example: provisioning
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when provisioning was initiated
+          example: "2026-04-19T10:30:00Z"
+
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: "The specified service_id does not exist"
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: "req-500999"

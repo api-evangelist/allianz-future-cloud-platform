@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/json-structure/platform-services-provision-resource-request-structure.json",
+  "description": "Request body for provisioning an infrastructure resource",
+  "properties": {
+    "resource_type": {
+      "type": "string",
+      "description": "Type of infrastructure resource to provision",
+      "enum": [
+        "redis",
+        "rds",
+        "msk",
+        "s3"
+      ],
+      "example": "redis"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name for the infrastructure resource",
+      "example": "policy-cache"
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Namespace the resource will be associated with",
+      "example": "insurance-policy"
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Resource-specific configuration parameters",
+      "example": {
+        "instance_type": "cache.t3.medium",
+        "engine_version": "7.0"
+      }
+    }
+  },
+  "required": [
+    "resource_type",
+    "name",
+    "namespace"
+  ],
+  "name": "ProvisionResourceRequest"
+}
