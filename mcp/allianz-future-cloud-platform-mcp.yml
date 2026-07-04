@@ -1,0 +1,37 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: openapi/allianz-future-cloud-platform-services.yaml
+note: >-
+  No official hosted or remote MCP server was found for the Allianz Future Cloud
+  Platform (internal developer platform; no public MCP registry entry or
+  @modelcontextprotocol package). This is a candidate tool list derived one tool
+  per OpenAPI operationId to guide a future MCP wrapper. Not a published server.
+server:
+  name: allianz-future-cloud-platform
+  transport: http
+tools:
+  - name: list_services
+    description: List all registered microservices on the platform with their status and metadata.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#listServices
+  - name: register_service
+    description: Register a new microservice on the Allianz Future Cloud Platform.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#registerService
+  - name: get_service
+    description: Retrieve details and status of a specific microservice.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#getService
+  - name: list_deployments
+    description: Retrieve the deployment history for a specific service.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#listDeployments
+  - name: deploy_service
+    description: Trigger a new deployment for a service with a specified version.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#deployService
+  - name: list_namespaces
+    description: List all Kubernetes namespaces managed on the platform.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#listNamespaces
+  - name: get_metrics
+    description: Retrieve platform metrics including service health, resource utilization, and throughput.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#getMetrics
+  - name: provision_resource
+    description: Provision a cloud infrastructure resource (RDS, Redis, MSK) using Crossplane.
+    source_operation: openapi/allianz-future-cloud-platform-services.yaml#provisionResource

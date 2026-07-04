@@ -1,0 +1,33 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  Probed the /.well-known/ discovery surface on each base host in apis.yml and
+  the OpenAPI servers[]. The API host platform.allianz.com is an internal
+  developer-platform host and is not publicly resolvable (connection failed for
+  every path). The corporate host www.allianz.com returns 403 for every probed
+  path (edge WAF block). No document returned 200, so no raw files were saved.
+hosts:
+  - host: https://platform.allianz.com
+    note: >-
+      Internal developer-platform host; not publicly resolvable. curl connection
+      failed (no HTTP response) for all paths.
+    documents:
+      - path: /.well-known/security.txt
+        status: 000
+      - path: /.well-known/openid-configuration
+        status: 000
+      - path: /.well-known/oauth-authorization-server
+        status: 000
+      - path: /.well-known/api-catalog
+        status: 000
+      - path: /.well-known/ai-plugin.json
+        status: 000
+  - host: https://www.allianz.com
+    note: Corporate site; edge WAF returns 403 for all probed paths.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403

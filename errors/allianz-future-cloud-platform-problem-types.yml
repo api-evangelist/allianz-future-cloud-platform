@@ -1,0 +1,42 @@
+generated: '2026-06-20'
+method: derived
+format: custom
+source: openapi/allianz-future-cloud-platform-services.yaml
+note: >-
+  Derived from the 4xx responses defined in the Services API OpenAPI. Errors use
+  a custom ErrorResponse schema (error, message, request_id) served as
+  application/json - NOT RFC 9457 application/problem+json. No 5xx responses are
+  defined in the spec, and no public error reference was found to enrich titles
+  or remediation.
+error_schema:
+  media_type: application/json
+  schema: openapi/allianz-future-cloud-platform-services.yaml#/components/schemas/ErrorResponse
+  fields:
+    - error
+    - message
+    - request_id
+problems:
+  - status: 400
+    title: Invalid configuration
+    description: Request body failed validation (invalid service, deployment, or resource configuration).
+    source_operations:
+      - openapi/allianz-future-cloud-platform-services.yaml#registerService
+      - openapi/allianz-future-cloud-platform-services.yaml#deployService
+      - openapi/allianz-future-cloud-platform-services.yaml#provisionResource
+  - status: 401
+    title: Unauthorized
+    description: Missing or invalid OAuth2 client-credentials bearer token.
+    source_operations:
+      - openapi/allianz-future-cloud-platform-services.yaml#listServices
+      - openapi/allianz-future-cloud-platform-services.yaml#registerService
+      - openapi/allianz-future-cloud-platform-services.yaml#getService
+      - openapi/allianz-future-cloud-platform-services.yaml#listDeployments
+      - openapi/allianz-future-cloud-platform-services.yaml#deployService
+      - openapi/allianz-future-cloud-platform-services.yaml#listNamespaces
+      - openapi/allianz-future-cloud-platform-services.yaml#getMetrics
+      - openapi/allianz-future-cloud-platform-services.yaml#provisionResource
+  - status: 404
+    title: Service not found
+    description: The specified service_id does not exist.
+    source_operations:
+      - openapi/allianz-future-cloud-platform-services.yaml#getService

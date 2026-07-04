@@ -1,0 +1,27 @@
+generated: '2026-06-20'
+method: derived
+source: >-
+  Derived from apis.yml baseURLs and the Services API OpenAPI servers[]. No
+  public versioning policy, deprecation policy, SLA, or status page was
+  discoverable - the platform is internal to Allianz (host platform.allianz.com
+  is not publicly resolvable).
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: >-
+    Both APIs pin the major version in the path - Services API at
+    /api/v1 and Policy Microservice API at /insurance/policy/v1. OpenAPI
+    info.version is 1.0.0.
+  docs: https://architecture.cncf.io/architectures/allianz/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No RFC 8594 Sunset/Deprecation header support is described and no operations
+    are marked deprecated in the OpenAPI.
+sla:
+  url: null
+  uptime_target: null
+  notes: No public SLA; internal platform SLOs are not published.
+status_page: null
+deprecated_operations: []

@@ -1,0 +1,13 @@
+{
+  "repo": "allianz-future-cloud-platform",
+  "feeds": [
+    {
+      "source": "https://www.allianz.com/en/press.html",
+      "feed_url": "https://www.allianz.com/en/press.html",
+      "title": "Allianz Press & News",
+      "saved": 7
+    }
+  ],
+  "fetched": "2026-07-04T13:37:50Z",
+  "post_count": 7
+}

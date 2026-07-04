@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Allianz Future Cloud Platform Services API
+  version: 1.0.0
+extends: openapi/allianz-future-cloud-platform-services.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-slug: allianz-future-cloud-platform
+      x-apievangelist-round: '2026-06-20'
+      x-apievangelist-visibility: internal
+      x-apievangelist-notes: >-
+        Internal Allianz developer platform; base host platform.allianz.com is
+        not publicly resolvable. Spec x-generated-from documentation (CNCF case
+        study).
+  - target: $.info
+    update:
+      x-apievangelist-standards:
+        oauth2: true
+        oidc: false
+        rfc9457-problem-details: false
+  - target: $.components.schemas.ErrorResponse
+    update:
+      x-apievangelist-note: >-
+        Custom error envelope (error/message/request_id). Not RFC 9457
+        application/problem+json; see conformance and error-catalog artifacts.
+  - target: $.tags
+    update:
+      - name: apievangelist:platform-engineering
+        description: API Evangelist tag - internal developer platform / platform engineering surface.

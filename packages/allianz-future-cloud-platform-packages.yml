@@ -1,0 +1,21 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  Searched npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist and
+  crates.io plus apis.yml for a first-party client library. The Allianz Future
+  Cloud Platform is an internal developer platform (base host
+  platform.allianz.com is not publicly resolvable) and publishes no public,
+  first-party SDK. apis.yml carries no SDK/CLI/SourceCode links to derive
+  candidates from. The GitHub repositories referenced in the OpenAPI examples
+  (github.com/allianz/policy-service, github.com/allianz/claims-service) return
+  404 and are illustrative, not real published packages.
+registries_probed:
+  - npm
+  - pypi
+  - maven-central
+  - nuget
+  - pkg.go.dev
+  - rubygems
+  - packagist
+  - crates.io
+packages: []

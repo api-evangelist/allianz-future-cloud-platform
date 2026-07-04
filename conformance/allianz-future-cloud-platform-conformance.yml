@@ -1,0 +1,52 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/allianz-future-cloud-platform-services.yaml
+note: >-
+  Derived from the Services API OpenAPI (securitySchemes, response schemas, tags,
+  pagination shape). No public compliance claims were discoverable (internal
+  platform; well-known discovery returned no 200s).
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      components.securitySchemes.OAuth2 type oauth2 with clientCredentials flow
+      (tokenUrl https://platform.allianz.com/oauth2/token) and scoped access.
+  - id: oidc
+    conforms: false
+    evidence: >-
+      No openid scope, no id_token, and no /.well-known/openid-configuration
+      served (probe returned no 200).
+  - id: fapi
+    conforms: false
+  - id: scim2
+    conforms: false
+  - id: fhir-r4
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: psd2
+    conforms: false
+  - id: json-api
+    conforms: false
+    evidence: >-
+      List responses use a bespoke {total, items[]} envelope, not the JSON:API
+      data/attributes structure.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Error responses use a custom ErrorResponse schema (error/message/request_id)
+      served as application/json, not application/problem+json.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header usage described; no operations marked deprecated.
+  - id: pagination
+    conforms: partial
+    evidence: >-
+      Collection responses expose total and items[], and list operations accept a
+      limit query parameter, but there is no offset/cursor or next-link envelope.
+  - id: idempotency
+    conforms: partial
+    evidence: >-
+      GET operations (listServices, getService, listDeployments, listNamespaces,
+      getMetrics) are safe/idempotent; POST operations (registerService,
+      deployService, provisionResource) expose no Idempotency-Key header.

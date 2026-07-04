@@ -18,7 +18,7 @@ description: >-
   infrastructure management, observability, and GitOps automation across
   Allianz's global insurance operations.
 created: '2024-01-15'
-modified: '2026-04-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
   - aid: allianz-future-cloud-platform:platform-services-api
@@ -47,6 +47,14 @@ apis:
         type: Example
       - url: examples/platform-services-deployment-example.json
         type: Example
+      - url: overlays/allianz-future-cloud-platform-services-overlay.yaml
+        type: Overlay
+      - url: mcp/allianz-future-cloud-platform-mcp.yml
+        type: MCPServer
+      - url: conformance/allianz-future-cloud-platform-conformance.yml
+        type: Conformance
+      - url: errors/allianz-future-cloud-platform-problem-types.yml
+        type: ErrorCatalog
     description: >-
       Platform engineering APIs for managing cloud-native services on the
       Allianz Future Cloud Platform. Provides capabilities for service
@@ -164,6 +172,16 @@ common:
         description: >-
           AWS MSK for event-driven communication between insurance
           microservices and downstream systems.
+  - url: https://www.allianz.com/en/press.html
+    type: Blog
+  - url: packages/allianz-future-cloud-platform-packages.yml
+    type: Packages
+  - url: well-known/allianz-future-cloud-platform-well-known.yml
+    type: WellKnown
+  - url: llms/allianz-future-cloud-platform-llms.txt
+    type: LLMsTxt
+  - url: lifecycle/allianz-future-cloud-platform-lifecycle.yml
+    type: Lifecycle
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
