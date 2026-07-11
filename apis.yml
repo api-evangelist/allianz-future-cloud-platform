@@ -89,6 +89,8 @@ apis:
     baseURL: https://platform.allianz.com/insurance/policy/v1
 
 common:
+  - type: OAuthScopes
+    url: scopes/allianz-future-cloud-platform-scopes.yml
   - url: https://www.allianz.com/
     type: Website
   - url: https://github.com/allianz

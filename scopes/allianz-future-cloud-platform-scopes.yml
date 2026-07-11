@@ -1,0 +1,47 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/allianz-future-cloud-platform-services.yaml
+schemes:
+- name: OAuth2
+  source: openapi/allianz-future-cloud-platform-services.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://platform.allianz.com/oauth2/token
+  description: OAuth2 for Allianz internal platform API access
+scopes:
+- scope: deployments:read
+  description: Read deployment history
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
+- scope: deployments:write
+  description: Trigger deployments
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
+- scope: infrastructure:write
+  description: Provision infrastructure resources
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
+- scope: observability:read
+  description: Access platform metrics
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
+- scope: services:read
+  description: Read service definitions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
+- scope: services:write
+  description: Register and manage services
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
