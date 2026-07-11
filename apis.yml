@@ -89,6 +89,12 @@ apis:
     baseURL: https://platform.allianz.com/insurance/policy/v1
 
 common:
+  - type: VulnerabilityDisclosure
+    url: security/allianz-future-cloud-platform-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/allianz-future-cloud-platform-domain-security.yml
+  - type: Authentication
+    url: authentication/allianz-future-cloud-platform-authentication.yml
   - type: OAuthScopes
     url: scopes/allianz-future-cloud-platform-scopes.yml
   - url: https://www.allianz.com/

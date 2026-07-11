@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/allianz-future-cloud-platform-services.yaml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://platform.allianz.com/oauth2/token
+    scopes: 6
+  description: OAuth2 for Allianz internal platform API access
+  sources:
+  - openapi/allianz-future-cloud-platform-services.yaml
