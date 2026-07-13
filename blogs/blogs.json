@@ -3,11 +3,9 @@
   "feeds": [
     {
       "source": "https://www.allianz.com/en/press.html",
-      "feed_url": "https://www.allianz.com/en/press.html",
-      "title": "Allianz Press & News",
-      "saved": 7
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-07-04T13:37:50Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 7
 }
