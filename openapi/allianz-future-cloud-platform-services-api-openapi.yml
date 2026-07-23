@@ -1,0 +1,347 @@
+openapi: 3.0.3
+info:
+  title: Allianz Future Cloud Platform Deployments Services API
+  description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
+  version: 1.0.0
+  contact:
+    name: Allianz Platform Engineering
+    url: https://architecture.cncf.io/architectures/allianz/
+  x-generated-from: documentation
+servers:
+- url: https://platform.allianz.com/api/v1
+  description: Allianz Future Cloud Platform production API
+security:
+- OAuth2: []
+tags:
+- name: Services
+  description: Service registration and management operations
+paths:
+  /services:
+    get:
+      operationId: listServices
+      summary: Allianz Future Cloud Platform List Services
+      description: List all registered microservices on the platform with their status and metadata.
+      tags:
+      - Services
+      parameters:
+      - name: namespace
+        in: query
+        required: false
+        description: Filter services by Kubernetes namespace
+        schema:
+          type: string
+        example: insurance-policy
+      - name: status
+        in: query
+        required: false
+        description: Filter services by deployment status
+        schema:
+          type: string
+          enum:
+          - running
+          - pending
+          - failed
+          - stopped
+        example: running
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of services to return
+        schema:
+          type: integer
+          default: 50
+        example: 50
+      responses:
+        '200':
+          description: Services retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceList'
+              examples:
+                ListServices200Example:
+                  summary: Default listServices 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 62
+                    items:
+                    - service_id: svc-500123
+                      name: policy-service
+                      namespace: insurance-policy
+                      status: running
+                      replicas: 3
+                      version: 2.5.1
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: registerService
+      summary: Allianz Future Cloud Platform Register Service
+      description: Register a new microservice on the Allianz Future Cloud Platform.
+      tags:
+      - Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterServiceRequest'
+            examples:
+              RegisterServiceRequestExample:
+                summary: Default registerService request
+                x-microcks-default: true
+                value:
+                  name: claims-service
+                  namespace: insurance-claims
+                  language: kotlin
+                  repository_url: https://github.com/allianz/claims-service
+                  resource_requirements:
+                    cpu: 500m
+                    memory: 512Mi
+      responses:
+        '201':
+          description: Service registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                RegisterService201Example:
+                  summary: Default registerService 201 response
+                  x-microcks-default: true
+                  value:
+                    service_id: svc-500456
+                    name: claims-service
+                    namespace: insurance-claims
+                    status: pending
+                    created_at: '2026-04-19T10:00:00Z'
+        '400':
+          description: Invalid service configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/{service_id}:
+    get:
+      operationId: getService
+      summary: Allianz Future Cloud Platform Get Service
+      description: Retrieve details and status of a specific microservice.
+      tags:
+      - Services
+      parameters:
+      - name: service_id
+        in: path
+        required: true
+        description: Unique identifier of the service
+        schema:
+          type: string
+        example: svc-500123
+      responses:
+        '200':
+          description: Service retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+              examples:
+                GetService200Example:
+                  summary: Default getService 200 response
+                  x-microcks-default: true
+                  value:
+                    service_id: svc-500123
+                    name: policy-service
+                    namespace: insurance-policy
+                    status: running
+                    replicas: 3
+                    version: 2.5.1
+                    created_at: '2026-01-01T00:00:00Z'
+        '404':
+          description: Service not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ResourceRequirements:
+      title: ResourceRequirements
+      type: object
+      description: Kubernetes resource requests and limits
+      properties:
+        cpu:
+          type: string
+          description: CPU resource request in Kubernetes units
+          example: 500m
+        memory:
+          type: string
+          description: Memory resource request in Kubernetes units
+          example: 512Mi
+        cpu_limit:
+          type: string
+          description: CPU resource limit
+          example: 1000m
+        memory_limit:
+          type: string
+          description: Memory resource limit
+          example: 1Gi
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    ServiceList:
+      title: ServiceList
+      type: object
+      description: Paginated list of platform services
+      properties:
+        total:
+          type: integer
+          description: Total number of registered services
+          example: 62
+        items:
+          type: array
+          description: List of service records
+          items:
+            $ref: '#/components/schemas/Service'
+    Service:
+      title: Service
+      type: object
+      description: A microservice registered on the Allianz Future Cloud Platform
+      properties:
+        service_id:
+          type: string
+          description: Unique identifier for the service
+          example: svc-500123
+        name:
+          type: string
+          description: Kebab-case service name
+          example: policy-service
+        namespace:
+          type: string
+          description: Kubernetes namespace the service belongs to
+          example: insurance-policy
+        status:
+          type: string
+          description: Current operational status
+          enum:
+          - running
+          - pending
+          - failed
+          - stopped
+          example: running
+        replicas:
+          type: integer
+          description: Number of running pod replicas
+          example: 3
+        version:
+          type: string
+          description: Currently deployed version
+          example: 2.5.1
+        language:
+          type: string
+          description: Primary programming language
+          enum:
+          - kotlin
+          - java
+          - nodejs
+          - python
+          example: kotlin
+        repository_url:
+          type: string
+          format: uri
+          description: Git repository URL
+          example: https://github.com/allianz/policy-service
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the service was registered
+          example: '2026-01-01T00:00:00Z'
+        modified_at:
+          type: string
+          format: date-time
+          description: Timestamp when the service was last updated
+          example: '2026-04-15T14:30:00Z'
+    RegisterServiceRequest:
+      title: RegisterServiceRequest
+      type: object
+      description: Request body for registering a new service
+      required:
+      - name
+      - namespace
+      - language
+      - repository_url
+      properties:
+        name:
+          type: string
+          description: Kebab-case service name
+          example: claims-service
+        namespace:
+          type: string
+          description: Target Kubernetes namespace
+          example: insurance-claims
+        language:
+          type: string
+          description: Primary programming language
+          enum:
+          - kotlin
+          - java
+          - nodejs
+          - python
+          example: kotlin
+        repository_url:
+          type: string
+          format: uri
+          description: Git repository URL for the service
+          example: https://github.com/allianz/claims-service
+        resource_requirements:
+          $ref: '#/components/schemas/ResourceRequirements'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 for Allianz internal platform API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://platform.allianz.com/oauth2/token
+          scopes:
+            services:read: Read service definitions
+            services:write: Register and manage services
+            deployments:read: Read deployment history
+            deployments:write: Trigger deployments
+            observability:read: Access platform metrics
+            infrastructure:write: Provision infrastructure resources

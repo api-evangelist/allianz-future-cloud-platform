@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Allianz Future Cloud Platform Services Deployments Namespaces API
+  description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
+  version: 1.0.0
+  contact:
+    name: Allianz Platform Engineering
+    url: https://architecture.cncf.io/architectures/allianz/
+  x-generated-from: documentation
+servers:
+- url: https://platform.allianz.com/api/v1
+  description: Allianz Future Cloud Platform production API
+security:
+- OAuth2: []
+tags:
+- name: Namespaces
+  description: Kubernetes namespace management operations
+paths:
+  /namespaces:
+    get:
+      operationId: listNamespaces
+      summary: Allianz Future Cloud Platform List Namespaces
+      description: List all Kubernetes namespaces managed on the platform.
+      tags:
+      - Namespaces
+      responses:
+        '200':
+          description: Namespaces retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespaceList'
+              examples:
+                ListNamespaces200Example:
+                  summary: Default listNamespaces 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 12
+                    items:
+                    - namespace_id: ns-500111
+                      name: insurance-policy
+                      team: policy-team
+                      service_count: 8
+                      status: active
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    NamespaceList:
+      title: NamespaceList
+      type: object
+      description: List of platform namespaces
+      properties:
+        total:
+          type: integer
+          description: Total number of namespaces
+          example: 12
+        items:
+          type: array
+          description: List of namespace records
+          items:
+            $ref: '#/components/schemas/Namespace'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    Namespace:
+      title: Namespace
+      type: object
+      description: A Kubernetes namespace managed on the platform
+      properties:
+        namespace_id:
+          type: string
+          description: Unique identifier for the namespace
+          example: ns-500111
+        name:
+          type: string
+          description: Kubernetes namespace name
+          example: insurance-policy
+        team:
+          type: string
+          description: Team owning this namespace
+          example: policy-team
+        service_count:
+          type: integer
+          description: Number of services in this namespace
+          example: 8
+        status:
+          type: string
+          description: Namespace status
+          enum:
+          - active
+          - provisioning
+          - decommissioning
+          example: active
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 for Allianz internal platform API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://platform.allianz.com/oauth2/token
+          scopes:
+            services:read: Read service definitions
+            services:write: Register and manage services
+            deployments:read: Read deployment history
+            deployments:write: Trigger deployments
+            observability:read: Access platform metrics
+            infrastructure:write: Provision infrastructure resources

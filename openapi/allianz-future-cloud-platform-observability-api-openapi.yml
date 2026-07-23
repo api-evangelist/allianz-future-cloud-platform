@@ -1,0 +1,139 @@
+openapi: 3.0.3
+info:
+  title: Allianz Future Cloud Platform Services Deployments Observability API
+  description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
+  version: 1.0.0
+  contact:
+    name: Allianz Platform Engineering
+    url: https://architecture.cncf.io/architectures/allianz/
+  x-generated-from: documentation
+servers:
+- url: https://platform.allianz.com/api/v1
+  description: Allianz Future Cloud Platform production API
+security:
+- OAuth2: []
+tags:
+- name: Observability
+  description: Monitoring, metrics, and alerting configuration operations
+paths:
+  /observability/metrics:
+    get:
+      operationId: getMetrics
+      summary: Allianz Future Cloud Platform Get Metrics
+      description: Retrieve platform metrics including service health, resource utilization, and throughput.
+      tags:
+      - Observability
+      parameters:
+      - name: service_id
+        in: query
+        required: false
+        description: Filter metrics by service identifier
+        schema:
+          type: string
+        example: svc-500123
+      - name: time_range
+        in: query
+        required: false
+        description: Time range for metrics in minutes
+        schema:
+          type: integer
+          default: 60
+        example: 60
+      responses:
+        '200':
+          description: Metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+              examples:
+                GetMetrics200Example:
+                  summary: Default getMetrics 200 response
+                  x-microcks-default: true
+                  value:
+                    service_id: svc-500123
+                    time_range_minutes: 60
+                    cpu_utilization: 42.5
+                    memory_utilization: 68.2
+                    request_rate: 1250.0
+                    error_rate: 0.12
+                    p99_latency_ms: 145
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    MetricsResponse:
+      title: MetricsResponse
+      type: object
+      description: Platform metrics for a service or overall platform
+      properties:
+        service_id:
+          type: string
+          description: Service the metrics apply to (null for platform-wide)
+          example: svc-500123
+        time_range_minutes:
+          type: integer
+          description: Time range the metrics cover
+          example: 60
+        cpu_utilization:
+          type: number
+          format: double
+          description: Average CPU utilization percentage
+          example: 42.5
+        memory_utilization:
+          type: number
+          format: double
+          description: Average memory utilization percentage
+          example: 68.2
+        request_rate:
+          type: number
+          format: double
+          description: Requests per minute
+          example: 1250.0
+        error_rate:
+          type: number
+          format: double
+          description: Error rate as a percentage
+          example: 0.12
+        p99_latency_ms:
+          type: integer
+          description: 99th percentile response latency in milliseconds
+          example: 145
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 for Allianz internal platform API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://platform.allianz.com/oauth2/token
+          scopes:
+            services:read: Read service definitions
+            services:write: Register and manage services
+            deployments:read: Read deployment history
+            deployments:write: Trigger deployments
+            observability:read: Access platform metrics
+            infrastructure:write: Provision infrastructure resources

@@ -1,0 +1,175 @@
+openapi: 3.0.3
+info:
+  title: Allianz Future Cloud Platform Services Deployments Infrastructure API
+  description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
+  version: 1.0.0
+  contact:
+    name: Allianz Platform Engineering
+    url: https://architecture.cncf.io/architectures/allianz/
+  x-generated-from: documentation
+servers:
+- url: https://platform.allianz.com/api/v1
+  description: Allianz Future Cloud Platform production API
+security:
+- OAuth2: []
+tags:
+- name: Infrastructure
+  description: Infrastructure provisioning and management operations
+paths:
+  /infrastructure/resources:
+    post:
+      operationId: provisionResource
+      summary: Allianz Future Cloud Platform Provision Resource
+      description: Provision a cloud infrastructure resource (RDS, Redis, MSK) using Crossplane.
+      tags:
+      - Infrastructure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisionResourceRequest'
+            examples:
+              ProvisionResourceRequestExample:
+                summary: Default provisionResource request
+                x-microcks-default: true
+                value:
+                  resource_type: redis
+                  name: policy-cache
+                  namespace: insurance-policy
+                  configuration:
+                    instance_type: cache.t3.medium
+                    engine_version: '7.0'
+      responses:
+        '202':
+          description: Resource provisioning initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureResource'
+              examples:
+                ProvisionResource202Example:
+                  summary: Default provisionResource 202 response
+                  x-microcks-default: true
+                  value:
+                    resource_id: infra-500222
+                    resource_type: redis
+                    name: policy-cache
+                    namespace: insurance-policy
+                    status: provisioning
+                    created_at: '2026-04-19T10:30:00Z'
+        '400':
+          description: Invalid resource configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ProvisionResourceRequest:
+      title: ProvisionResourceRequest
+      type: object
+      description: Request body for provisioning an infrastructure resource
+      required:
+      - resource_type
+      - name
+      - namespace
+      properties:
+        resource_type:
+          type: string
+          description: Type of infrastructure resource to provision
+          enum:
+          - redis
+          - rds
+          - msk
+          - s3
+          example: redis
+        name:
+          type: string
+          description: Name for the infrastructure resource
+          example: policy-cache
+        namespace:
+          type: string
+          description: Namespace the resource will be associated with
+          example: insurance-policy
+        configuration:
+          type: object
+          description: Resource-specific configuration parameters
+          example:
+            instance_type: cache.t3.medium
+            engine_version: '7.0'
+    InfrastructureResource:
+      title: InfrastructureResource
+      type: object
+      description: A provisioned cloud infrastructure resource
+      properties:
+        resource_id:
+          type: string
+          description: Unique identifier for the resource
+          example: infra-500222
+        resource_type:
+          type: string
+          description: Type of infrastructure resource
+          example: redis
+        name:
+          type: string
+          description: Resource name
+          example: policy-cache
+        namespace:
+          type: string
+          description: Associated Kubernetes namespace
+          example: insurance-policy
+        status:
+          type: string
+          description: Provisioning status
+          enum:
+          - provisioning
+          - ready
+          - failed
+          - decommissioned
+          example: provisioning
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when provisioning was initiated
+          example: '2026-04-19T10:30:00Z'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 for Allianz internal platform API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://platform.allianz.com/oauth2/token
+          scopes:
+            services:read: Read service definitions
+            services:write: Register and manage services
+            deployments:read: Read deployment history
+            deployments:write: Trigger deployments
+            observability:read: Access platform metrics
+            infrastructure:write: Provision infrastructure resources

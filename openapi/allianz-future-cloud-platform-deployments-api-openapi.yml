@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: Allianz Future Cloud Platform Services Deployments API
+  description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
+  version: 1.0.0
+  contact:
+    name: Allianz Platform Engineering
+    url: https://architecture.cncf.io/architectures/allianz/
+  x-generated-from: documentation
+servers:
+- url: https://platform.allianz.com/api/v1
+  description: Allianz Future Cloud Platform production API
+security:
+- OAuth2: []
+tags:
+- name: Deployments
+  description: Deployment lifecycle management operations
+paths:
+  /services/{service_id}/deployments:
+    get:
+      operationId: listDeployments
+      summary: Allianz Future Cloud Platform List Deployments
+      description: Retrieve the deployment history for a specific service.
+      tags:
+      - Deployments
+      parameters:
+      - name: service_id
+        in: path
+        required: true
+        description: Unique identifier of the service
+        schema:
+          type: string
+        example: svc-500123
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of deployments to return
+        schema:
+          type: integer
+          default: 20
+        example: 20
+      responses:
+        '200':
+          description: Deployments retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentList'
+              examples:
+                ListDeployments200Example:
+                  summary: Default listDeployments 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 45
+                    items:
+                    - deployment_id: dep-500789
+                      service_id: svc-500123
+                      version: 2.5.1
+                      status: succeeded
+                      deployed_at: '2026-04-15T14:30:00Z'
+                      deployed_by: argo-cd
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: deployService
+      summary: Allianz Future Cloud Platform Deploy Service
+      description: Trigger a new deployment for a service with a specified version.
+      tags:
+      - Deployments
+      parameters:
+      - name: service_id
+        in: path
+        required: true
+        description: Unique identifier of the service
+        schema:
+          type: string
+        example: svc-500123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeployServiceRequest'
+            examples:
+              DeployServiceRequestExample:
+                summary: Default deployService request
+                x-microcks-default: true
+                value:
+                  version: 2.6.0
+                  image: allianz/policy-service:2.6.0
+                  strategy: rolling
+      responses:
+        '202':
+          description: Deployment initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+              examples:
+                DeployService202Example:
+                  summary: Default deployService 202 response
+                  x-microcks-default: true
+                  value:
+                    deployment_id: dep-500890
+                    service_id: svc-500123
+                    version: 2.6.0
+                    status: in_progress
+                    initiated_at: '2026-04-19T10:30:00Z'
+        '400':
+          description: Invalid deployment configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Deployment:
+      title: Deployment
+      type: object
+      description: A service deployment record on the platform
+      properties:
+        deployment_id:
+          type: string
+          description: Unique identifier for the deployment
+          example: dep-500789
+        service_id:
+          type: string
+          description: Service this deployment belongs to
+          example: svc-500123
+        version:
+          type: string
+          description: Version being deployed
+          example: 2.5.1
+        image:
+          type: string
+          description: Container image with tag
+          example: allianz/policy-service:2.5.1
+        status:
+          type: string
+          description: Current deployment status
+          enum:
+          - in_progress
+          - succeeded
+          - failed
+          - rolled_back
+          example: succeeded
+        strategy:
+          type: string
+          description: Deployment strategy used
+          enum:
+          - rolling
+          - blue_green
+          - canary
+          example: rolling
+        deployed_at:
+          type: string
+          format: date-time
+          description: Timestamp when the deployment completed
+          example: '2026-04-15T14:30:00Z'
+        deployed_by:
+          type: string
+          description: Actor that triggered the deployment
+          example: argo-cd
+        initiated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the deployment was initiated
+          example: '2026-04-19T10:30:00Z'
+    DeploymentList:
+      title: DeploymentList
+      type: object
+      description: Paginated list of deployment records
+      properties:
+        total:
+          type: integer
+          description: Total number of deployments
+          example: 45
+        items:
+          type: array
+          description: List of deployment records
+          items:
+            $ref: '#/components/schemas/Deployment'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
+    DeployServiceRequest:
+      title: DeployServiceRequest
+      type: object
+      description: Request body for triggering a service deployment
+      required:
+      - version
+      - image
+      properties:
+        version:
+          type: string
+          description: Version tag to deploy
+          example: 2.6.0
+        image:
+          type: string
+          description: Container image with version tag
+          example: allianz/policy-service:2.6.0
+        strategy:
+          type: string
+          description: Deployment strategy
+          enum:
+          - rolling
+          - blue_green
+          - canary
+          default: rolling
+          example: rolling
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth2 for Allianz internal platform API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://platform.allianz.com/oauth2/token
+          scopes:
+            services:read: Read service definitions
+            services:write: Register and manage services
+            deployments:read: Read deployment history
+            deployments:write: Trigger deployments
+            observability:read: Access platform metrics
+            infrastructure:write: Provision infrastructure resources
