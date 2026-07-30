@@ -10,7 +10,19 @@ tags:
   - Platform Engineering
   - Kubernetes
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/allianz-future-cloud-platform.png
 description: >-
   The Allianz Future Cloud Platform is an internal developer platform powering
   cloud-native insurance microservices at Allianz. Built on Kubernetes and AWS,
@@ -21,73 +33,196 @@ created: '2024-01-15'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-  - aid: allianz-future-cloud-platform:platform-services-api
-    name: Allianz Future Cloud Platform Services API
-    tags:
-      - Cloud Platform
-      - Platform Engineering
-      - Microservices
-      - DevOps
-    properties:
-      - url: https://architecture.cncf.io/architectures/allianz/
-        type: Documentation
-      - url: https://www.cncf.io/case-studies/allianz/
-        type: Documentation
-      - url: openapi/allianz-future-cloud-platform-services.yaml
-        type: OpenAPI
-      - url: json-schema/platform-services-service-schema.json
-        type: JSONSchema
-      - url: json-schema/platform-services-deployment-schema.json
-        type: JSONSchema
-      - url: json-structure/platform-services-service-structure.json
-        type: JSONStructure
-      - url: json-ld/allianz-future-cloud-platform-context.jsonld
-        type: JSONLD
-      - url: examples/platform-services-service-example.json
-        type: Example
-      - url: examples/platform-services-deployment-example.json
-        type: Example
-      - url: overlays/allianz-future-cloud-platform-services-overlay.yaml
-        type: Overlay
-      - url: mcp/allianz-future-cloud-platform-mcp.yml
-        type: MCPServer
-      - url: conformance/allianz-future-cloud-platform-conformance.yml
-        type: Conformance
-      - url: errors/allianz-future-cloud-platform-problem-types.yml
-        type: ErrorCatalog
-    description: >-
-      Platform engineering APIs for managing cloud-native services on the
-      Allianz Future Cloud Platform. Provides capabilities for service
-      registration, deployment management, observability configuration, and
-      infrastructure provisioning across Kubernetes clusters.
-    humanURL: https://architecture.cncf.io/architectures/allianz/
-    baseURL: https://platform.allianz.com/api/v1
-
-  - aid: allianz-future-cloud-platform:policy-microservice-api
-    name: Allianz Insurance Policy Microservice API
-    tags:
-      - Insurance
-      - Policy Management
-      - Microservices
-    properties:
-      - url: https://www.allianz.com/en/about-us/technology.html
-        type: Documentation
-      - url: openapi/allianz-future-cloud-platform-policy.yaml
-        type: OpenAPI
-      - url: json-schema/platform-policy-policy-schema.json
-        type: JSONSchema
-      - url: json-structure/platform-policy-policy-structure.json
-        type: JSONStructure
-      - url: examples/platform-policy-policy-example.json
-        type: Example
-    description: >-
-      Insurance policy microservice running on the Allianz Future Cloud Platform.
-      Provides REST APIs for policy lifecycle management including creation,
-      endorsements, renewals, and cancellations built with Kotlin and Java on
-      Kubernetes.
-    humanURL: https://www.allianz.com/en/about-us/technology.html
-    baseURL: https://platform.allianz.com/insurance/policy/v1
-
+- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-deployments-api
+  name: Allianz Future Cloud Platform Deployments API
+  description: Deployment lifecycle management operations
+  humanURL: https://architecture.cncf.io/architectures/allianz/
+  baseURL: https://platform.allianz.com/api/v1
+  tags:
+  - Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/allianz-future-cloud-platform-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://architecture.cncf.io/architectures/allianz/
+  - type: Documentation
+    url: https://www.cncf.io/case-studies/allianz/
+  - type: JSONSchema
+    url: json-schema/platform-services-service-schema.json
+  - type: JSONSchema
+    url: json-schema/platform-services-deployment-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-services-service-structure.json
+  - type: JSONLD
+    url: json-ld/allianz-future-cloud-platform-context.jsonld
+  - type: Example
+    url: examples/platform-services-service-example.json
+  - type: Example
+    url: examples/platform-services-deployment-example.json
+  - type: Conformance
+    url: conformance/allianz-future-cloud-platform-conformance.yml
+  - type: ErrorCatalog
+    url: errors/allianz-future-cloud-platform-problem-types.yml
+  - type: Documentation
+    url: https://www.allianz.com/en/about-us/technology.html
+  - type: JSONSchema
+    url: json-schema/platform-policy-policy-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-policy-policy-structure.json
+  - type: Example
+    url: examples/platform-policy-policy-example.json
+- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-infrastructure-api
+  name: Allianz Future Cloud Platform Infrastructure API
+  description: Infrastructure provisioning and management operations
+  humanURL: https://architecture.cncf.io/architectures/allianz/
+  baseURL: https://platform.allianz.com/api/v1
+  tags:
+  - Infrastructure
+  properties:
+  - type: OpenAPI
+    url: openapi/allianz-future-cloud-platform-infrastructure-api-openapi.yml
+  - type: Documentation
+    url: https://architecture.cncf.io/architectures/allianz/
+  - type: Documentation
+    url: https://www.cncf.io/case-studies/allianz/
+  - type: JSONSchema
+    url: json-schema/platform-services-service-schema.json
+  - type: JSONSchema
+    url: json-schema/platform-services-deployment-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-services-service-structure.json
+  - type: JSONLD
+    url: json-ld/allianz-future-cloud-platform-context.jsonld
+  - type: Example
+    url: examples/platform-services-service-example.json
+  - type: Example
+    url: examples/platform-services-deployment-example.json
+  - type: Conformance
+    url: conformance/allianz-future-cloud-platform-conformance.yml
+  - type: ErrorCatalog
+    url: errors/allianz-future-cloud-platform-problem-types.yml
+  - type: Documentation
+    url: https://www.allianz.com/en/about-us/technology.html
+  - type: JSONSchema
+    url: json-schema/platform-policy-policy-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-policy-policy-structure.json
+  - type: Example
+    url: examples/platform-policy-policy-example.json
+- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-namespaces-api
+  name: Allianz Future Cloud Platform Namespaces API
+  description: Kubernetes namespace management operations
+  humanURL: https://architecture.cncf.io/architectures/allianz/
+  baseURL: https://platform.allianz.com/api/v1
+  tags:
+  - Namespaces
+  properties:
+  - type: OpenAPI
+    url: openapi/allianz-future-cloud-platform-namespaces-api-openapi.yml
+  - type: Documentation
+    url: https://architecture.cncf.io/architectures/allianz/
+  - type: Documentation
+    url: https://www.cncf.io/case-studies/allianz/
+  - type: JSONSchema
+    url: json-schema/platform-services-service-schema.json
+  - type: JSONSchema
+    url: json-schema/platform-services-deployment-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-services-service-structure.json
+  - type: JSONLD
+    url: json-ld/allianz-future-cloud-platform-context.jsonld
+  - type: Example
+    url: examples/platform-services-service-example.json
+  - type: Example
+    url: examples/platform-services-deployment-example.json
+  - type: Conformance
+    url: conformance/allianz-future-cloud-platform-conformance.yml
+  - type: ErrorCatalog
+    url: errors/allianz-future-cloud-platform-problem-types.yml
+  - type: Documentation
+    url: https://www.allianz.com/en/about-us/technology.html
+  - type: JSONSchema
+    url: json-schema/platform-policy-policy-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-policy-policy-structure.json
+  - type: Example
+    url: examples/platform-policy-policy-example.json
+- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-observability-api
+  name: Allianz Future Cloud Platform Observability API
+  description: Monitoring, metrics, and alerting configuration operations
+  humanURL: https://architecture.cncf.io/architectures/allianz/
+  baseURL: https://platform.allianz.com/api/v1
+  tags:
+  - Observability
+  properties:
+  - type: OpenAPI
+    url: openapi/allianz-future-cloud-platform-observability-api-openapi.yml
+  - type: Documentation
+    url: https://architecture.cncf.io/architectures/allianz/
+  - type: Documentation
+    url: https://www.cncf.io/case-studies/allianz/
+  - type: JSONSchema
+    url: json-schema/platform-services-service-schema.json
+  - type: JSONSchema
+    url: json-schema/platform-services-deployment-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-services-service-structure.json
+  - type: JSONLD
+    url: json-ld/allianz-future-cloud-platform-context.jsonld
+  - type: Example
+    url: examples/platform-services-service-example.json
+  - type: Example
+    url: examples/platform-services-deployment-example.json
+  - type: Conformance
+    url: conformance/allianz-future-cloud-platform-conformance.yml
+  - type: ErrorCatalog
+    url: errors/allianz-future-cloud-platform-problem-types.yml
+  - type: Documentation
+    url: https://www.allianz.com/en/about-us/technology.html
+  - type: JSONSchema
+    url: json-schema/platform-policy-policy-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-policy-policy-structure.json
+  - type: Example
+    url: examples/platform-policy-policy-example.json
+- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-services-api
+  name: Allianz Future Cloud Platform Services API
+  description: Service registration and management operations
+  humanURL: https://architecture.cncf.io/architectures/allianz/
+  baseURL: https://platform.allianz.com/api/v1
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/allianz-future-cloud-platform-services-api-openapi.yml
+  - type: Documentation
+    url: https://architecture.cncf.io/architectures/allianz/
+  - type: Documentation
+    url: https://www.cncf.io/case-studies/allianz/
+  - type: JSONSchema
+    url: json-schema/platform-services-service-schema.json
+  - type: JSONSchema
+    url: json-schema/platform-services-deployment-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-services-service-structure.json
+  - type: JSONLD
+    url: json-ld/allianz-future-cloud-platform-context.jsonld
+  - type: Example
+    url: examples/platform-services-service-example.json
+  - type: Example
+    url: examples/platform-services-deployment-example.json
+  - type: Conformance
+    url: conformance/allianz-future-cloud-platform-conformance.yml
+  - type: ErrorCatalog
+    url: errors/allianz-future-cloud-platform-problem-types.yml
+  - type: Documentation
+    url: https://www.allianz.com/en/about-us/technology.html
+  - type: JSONSchema
+    url: json-schema/platform-policy-policy-schema.json
+  - type: JSONStructure
+    url: json-structure/platform-policy-policy-structure.json
+  - type: Example
+    url: examples/platform-policy-policy-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/allianz-future-cloud-platform-agentic-access.yml
