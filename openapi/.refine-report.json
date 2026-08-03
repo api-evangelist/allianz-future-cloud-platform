@@ -1,0 +1,22 @@
+{
+  "provider": "allianz-future-cloud-platform",
+  "sources": [
+    "allianz-future-cloud-platform-deployments-api-openapi.yml",
+    "allianz-future-cloud-platform-infrastructure-api-openapi.yml",
+    "allianz-future-cloud-platform-namespaces-api-openapi.yml",
+    "allianz-future-cloud-platform-observability-api-openapi.yml",
+    "allianz-future-cloud-platform-services-api-openapi.yml"
+  ],
+  "outputs": [
+    "allianz-future-cloud-platform-deployments-api-openapi.yml",
+    "allianz-future-cloud-platform-infrastructure-api-openapi.yml",
+    "allianz-future-cloud-platform-namespaces-api-openapi.yml",
+    "allianz-future-cloud-platform-observability-api-openapi.yml",
+    "allianz-future-cloud-platform-services-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
