@@ -1,6 +1,5 @@
 aid: allianz-future-cloud-platform
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/apis.yml
 name: Allianz Future Cloud Platform
 tags:
   - Cloud Platform
@@ -19,180 +18,178 @@ accessModel:
   label: Self-serve signup
   confidence: medium
   source:
-  - authentication
+    - authentication
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/allianz-future-cloud-platform.png
 description: >-
-  The Allianz Future Cloud Platform is an internal developer platform powering
-  cloud-native insurance microservices at Allianz. Built on Kubernetes and AWS,
-  it provides platform engineering capabilities including service deployment,
-  infrastructure management, observability, and GitOps automation across
-  Allianz's global insurance operations.
+  The Allianz Future Cloud Platform is an internal developer platform powering cloud-native insurance microservices at
+  Allianz. Built on Kubernetes and AWS, it provides platform engineering capabilities including service deployment,
+  infrastructure management, observability, and GitOps automation across Allianz's global insurance operations.
 created: '2024-01-15'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-deployments-api
-  name: Allianz Future Cloud Platform Deployments API
-  description: Deployment lifecycle management operations
-  humanURL: https://architecture.cncf.io/architectures/allianz/
-  baseURL: https://platform.allianz.com/api/v1
-  tags:
-  - Deployments
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-future-cloud-platform-deployments-api-openapi.yml
-  - type: Documentation
-    url: https://architecture.cncf.io/architectures/allianz/
-  - type: Documentation
-    url: https://www.cncf.io/case-studies/allianz/
-  - type: JSONSchema
-    url: json-schema/platform-services-service-schema.json
-  - type: JSONSchema
-    url: json-schema/platform-services-deployment-schema.json
-  - type: JSONStructure
-    url: json-structure/platform-services-service-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-future-cloud-platform-context.jsonld
-  - type: Example
-    url: examples/platform-services-service-example.json
-  - type: Example
-    url: examples/platform-services-deployment-example.json
-  - type: Conformance
-    url: conformance/allianz-future-cloud-platform-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-future-cloud-platform-problem-types.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/about-us/technology.html
-- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-infrastructure-api
-  name: Allianz Future Cloud Platform Infrastructure API
-  description: Infrastructure provisioning and management operations
-  humanURL: https://architecture.cncf.io/architectures/allianz/
-  baseURL: https://platform.allianz.com/api/v1
-  tags:
-  - Infrastructure
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-future-cloud-platform-infrastructure-api-openapi.yml
-  - type: Documentation
-    url: https://architecture.cncf.io/architectures/allianz/
-  - type: Documentation
-    url: https://www.cncf.io/case-studies/allianz/
-  - type: JSONSchema
-    url: json-schema/platform-services-service-schema.json
-  - type: JSONSchema
-    url: json-schema/platform-services-deployment-schema.json
-  - type: JSONStructure
-    url: json-structure/platform-services-service-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-future-cloud-platform-context.jsonld
-  - type: Example
-    url: examples/platform-services-service-example.json
-  - type: Example
-    url: examples/platform-services-deployment-example.json
-  - type: Conformance
-    url: conformance/allianz-future-cloud-platform-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-future-cloud-platform-problem-types.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/about-us/technology.html
-- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-namespaces-api
-  name: Allianz Future Cloud Platform Namespaces API
-  description: Kubernetes namespace management operations
-  humanURL: https://architecture.cncf.io/architectures/allianz/
-  baseURL: https://platform.allianz.com/api/v1
-  tags:
-  - Namespaces
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-future-cloud-platform-namespaces-api-openapi.yml
-  - type: Documentation
-    url: https://architecture.cncf.io/architectures/allianz/
-  - type: Documentation
-    url: https://www.cncf.io/case-studies/allianz/
-  - type: JSONSchema
-    url: json-schema/platform-services-service-schema.json
-  - type: JSONSchema
-    url: json-schema/platform-services-deployment-schema.json
-  - type: JSONStructure
-    url: json-structure/platform-services-service-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-future-cloud-platform-context.jsonld
-  - type: Example
-    url: examples/platform-services-service-example.json
-  - type: Example
-    url: examples/platform-services-deployment-example.json
-  - type: Conformance
-    url: conformance/allianz-future-cloud-platform-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-future-cloud-platform-problem-types.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/about-us/technology.html
-- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-observability-api
-  name: Allianz Future Cloud Platform Observability API
-  description: Monitoring, metrics, and alerting configuration operations
-  humanURL: https://architecture.cncf.io/architectures/allianz/
-  baseURL: https://platform.allianz.com/api/v1
-  tags:
-  - Observability
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-future-cloud-platform-observability-api-openapi.yml
-  - type: Documentation
-    url: https://architecture.cncf.io/architectures/allianz/
-  - type: Documentation
-    url: https://www.cncf.io/case-studies/allianz/
-  - type: JSONSchema
-    url: json-schema/platform-services-service-schema.json
-  - type: JSONSchema
-    url: json-schema/platform-services-deployment-schema.json
-  - type: JSONStructure
-    url: json-structure/platform-services-service-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-future-cloud-platform-context.jsonld
-  - type: Example
-    url: examples/platform-services-service-example.json
-  - type: Example
-    url: examples/platform-services-deployment-example.json
-  - type: Conformance
-    url: conformance/allianz-future-cloud-platform-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-future-cloud-platform-problem-types.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/about-us/technology.html
-- aid: allianz-future-cloud-platform:allianz-future-cloud-platform-services-api
-  name: Allianz Future Cloud Platform Services API
-  description: Service registration and management operations
-  humanURL: https://architecture.cncf.io/architectures/allianz/
-  baseURL: https://platform.allianz.com/api/v1
-  tags:
-  - Services
-  properties:
-  - type: OpenAPI
-    url: openapi/allianz-future-cloud-platform-services-api-openapi.yml
-  - type: Documentation
-    url: https://architecture.cncf.io/architectures/allianz/
-  - type: Documentation
-    url: https://www.cncf.io/case-studies/allianz/
-  - type: JSONSchema
-    url: json-schema/platform-services-service-schema.json
-  - type: JSONSchema
-    url: json-schema/platform-services-deployment-schema.json
-  - type: JSONStructure
-    url: json-structure/platform-services-service-structure.json
-  - type: JSONLD
-    url: json-ld/allianz-future-cloud-platform-context.jsonld
-  - type: Example
-    url: examples/platform-services-service-example.json
-  - type: Example
-    url: examples/platform-services-deployment-example.json
-  - type: Conformance
-    url: conformance/allianz-future-cloud-platform-conformance.yml
-  - type: ErrorCatalog
-    url: errors/allianz-future-cloud-platform-problem-types.yml
-  - type: Documentation
-    url: https://www.allianz.com/en/about-us/technology.html
+  - aid: allianz-future-cloud-platform:allianz-future-cloud-platform-deployments-api
+    name: Allianz Future Cloud Platform Deployments API
+    description: Deployment lifecycle management operations
+    humanURL: https://architecture.cncf.io/architectures/allianz/
+    baseURL: https://platform.allianz.com/api/v1
+    tags:
+      - Deployments
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-future-cloud-platform-deployments-api-openapi.yml
+      - type: Documentation
+        url: https://architecture.cncf.io/architectures/allianz/
+      - type: Documentation
+        url: https://www.cncf.io/case-studies/allianz/
+      - type: JSONSchema
+        url: json-schema/platform-services-service-schema.json
+      - type: JSONSchema
+        url: json-schema/platform-services-deployment-schema.json
+      - type: JSONStructure
+        url: json-structure/platform-services-service-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-future-cloud-platform-context.jsonld
+      - type: Example
+        url: examples/platform-services-service-example.json
+      - type: Example
+        url: examples/platform-services-deployment-example.json
+      - type: Conformance
+        url: conformance/allianz-future-cloud-platform-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-future-cloud-platform-problem-types.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/about-us/technology.html
+  - aid: allianz-future-cloud-platform:allianz-future-cloud-platform-infrastructure-api
+    name: Allianz Future Cloud Platform Infrastructure API
+    description: Infrastructure provisioning and management operations
+    humanURL: https://architecture.cncf.io/architectures/allianz/
+    baseURL: https://platform.allianz.com/api/v1
+    tags:
+      - Infrastructure
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-future-cloud-platform-infrastructure-api-openapi.yml
+      - type: Documentation
+        url: https://architecture.cncf.io/architectures/allianz/
+      - type: Documentation
+        url: https://www.cncf.io/case-studies/allianz/
+      - type: JSONSchema
+        url: json-schema/platform-services-service-schema.json
+      - type: JSONSchema
+        url: json-schema/platform-services-deployment-schema.json
+      - type: JSONStructure
+        url: json-structure/platform-services-service-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-future-cloud-platform-context.jsonld
+      - type: Example
+        url: examples/platform-services-service-example.json
+      - type: Example
+        url: examples/platform-services-deployment-example.json
+      - type: Conformance
+        url: conformance/allianz-future-cloud-platform-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-future-cloud-platform-problem-types.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/about-us/technology.html
+  - aid: allianz-future-cloud-platform:allianz-future-cloud-platform-namespaces-api
+    name: Allianz Future Cloud Platform Namespaces API
+    description: Kubernetes namespace management operations
+    humanURL: https://architecture.cncf.io/architectures/allianz/
+    baseURL: https://platform.allianz.com/api/v1
+    tags:
+      - Namespaces
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-future-cloud-platform-namespaces-api-openapi.yml
+      - type: Documentation
+        url: https://architecture.cncf.io/architectures/allianz/
+      - type: Documentation
+        url: https://www.cncf.io/case-studies/allianz/
+      - type: JSONSchema
+        url: json-schema/platform-services-service-schema.json
+      - type: JSONSchema
+        url: json-schema/platform-services-deployment-schema.json
+      - type: JSONStructure
+        url: json-structure/platform-services-service-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-future-cloud-platform-context.jsonld
+      - type: Example
+        url: examples/platform-services-service-example.json
+      - type: Example
+        url: examples/platform-services-deployment-example.json
+      - type: Conformance
+        url: conformance/allianz-future-cloud-platform-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-future-cloud-platform-problem-types.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/about-us/technology.html
+  - aid: allianz-future-cloud-platform:allianz-future-cloud-platform-observability-api
+    name: Allianz Future Cloud Platform Observability API
+    description: Monitoring, metrics, and alerting configuration operations
+    humanURL: https://architecture.cncf.io/architectures/allianz/
+    baseURL: https://platform.allianz.com/api/v1
+    tags:
+      - Observability
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-future-cloud-platform-observability-api-openapi.yml
+      - type: Documentation
+        url: https://architecture.cncf.io/architectures/allianz/
+      - type: Documentation
+        url: https://www.cncf.io/case-studies/allianz/
+      - type: JSONSchema
+        url: json-schema/platform-services-service-schema.json
+      - type: JSONSchema
+        url: json-schema/platform-services-deployment-schema.json
+      - type: JSONStructure
+        url: json-structure/platform-services-service-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-future-cloud-platform-context.jsonld
+      - type: Example
+        url: examples/platform-services-service-example.json
+      - type: Example
+        url: examples/platform-services-deployment-example.json
+      - type: Conformance
+        url: conformance/allianz-future-cloud-platform-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-future-cloud-platform-problem-types.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/about-us/technology.html
+  - aid: allianz-future-cloud-platform:allianz-future-cloud-platform-services-api
+    name: Allianz Future Cloud Platform Services API
+    description: Service registration and management operations
+    humanURL: https://architecture.cncf.io/architectures/allianz/
+    baseURL: https://platform.allianz.com/api/v1
+    tags:
+      - Services
+    properties:
+      - type: OpenAPI
+        url: openapi/allianz-future-cloud-platform-services-api-openapi.yml
+      - type: Documentation
+        url: https://architecture.cncf.io/architectures/allianz/
+      - type: Documentation
+        url: https://www.cncf.io/case-studies/allianz/
+      - type: JSONSchema
+        url: json-schema/platform-services-service-schema.json
+      - type: JSONSchema
+        url: json-schema/platform-services-deployment-schema.json
+      - type: JSONStructure
+        url: json-structure/platform-services-service-structure.json
+      - type: JSONLD
+        url: json-ld/allianz-future-cloud-platform-context.jsonld
+      - type: Example
+        url: examples/platform-services-service-example.json
+      - type: Example
+        url: examples/platform-services-deployment-example.json
+      - type: Conformance
+        url: conformance/allianz-future-cloud-platform-conformance.yml
+      - type: ErrorCatalog
+        url: errors/allianz-future-cloud-platform-problem-types.yml
+      - type: Documentation
+        url: https://www.allianz.com/en/about-us/technology.html
 common:
   - type: MCPServer
     url: mcp/allianz-future-cloud-platform-mcp.yml
@@ -218,79 +215,64 @@ common:
     type: SpectralRules
   - url: vocabulary/allianz-future-cloud-platform-vocabulary.yaml
     type: Vocabulary
-  - url: capabilities/cloud-platform-operations.yaml
-    type: NaftikoCapability
   - type: Features
     data:
       - name: Kubernetes Platform Engineering
         description: >-
-          Internal developer platform built on Kubernetes (EKS) providing
-          standardized deployment, scaling, and orchestration for insurance
-          microservices.
+          Internal developer platform built on Kubernetes (EKS) providing standardized deployment, scaling, and
+          orchestration for insurance microservices.
       - name: GitOps Deployment
         description: >-
-          ArgoCD and Tekton-based CI/CD pipelines enabling GitOps workflows
-          for continuous delivery of insurance applications.
+          ArgoCD and Tekton-based CI/CD pipelines enabling GitOps workflows for continuous delivery of insurance
+          applications.
       - name: Infrastructure as Code
         description: >-
-          Terraform and Crossplane-based infrastructure management enabling
-          repeatable, auditable cloud resource provisioning.
+          Terraform and Crossplane-based infrastructure management enabling repeatable, auditable cloud resource
+          provisioning.
       - name: Observability Stack
         description: >-
-          Prometheus, Grafana, and OpenTelemetry based observability platform
-          providing metrics, tracing, and alerting for platform services.
+          Prometheus, Grafana, and OpenTelemetry based observability platform providing metrics, tracing, and alerting
+          for platform services.
       - name: Multi-tenant Architecture
-        description: >-
-          Namespace-level multi-tenancy supporting multiple insurance product
-          teams on shared Kubernetes infrastructure.
+        description: Namespace-level multi-tenancy supporting multiple insurance product teams on shared Kubernetes infrastructure.
       - name: Event Streaming
         description: >-
-          AWS MSK (Managed Kafka) for high-throughput event streaming between
-          insurance microservices and downstream consumers.
+          AWS MSK (Managed Kafka) for high-throughput event streaming between insurance microservices and downstream
+          consumers.
   - type: UseCases
     data:
       - name: Insurance Microservice Deployment
         description: >-
-          Deploy and manage Kotlin and Java insurance microservices on the
-          platform with standardized CI/CD pipelines and GitOps workflows.
+          Deploy and manage Kotlin and Java insurance microservices on the platform with standardized CI/CD pipelines
+          and GitOps workflows.
       - name: Platform Onboarding
         description: >-
-          Onboard new insurance product teams onto the shared Kubernetes
-          platform with pre-configured namespaces and RBAC policies.
+          Onboard new insurance product teams onto the shared Kubernetes platform with pre-configured namespaces and
+          RBAC policies.
       - name: Observability and Monitoring
         description: >-
-          Configure monitoring dashboards and alerting for insurance services
-          using the platform's built-in Prometheus and Grafana stack.
+          Configure monitoring dashboards and alerting for insurance services using the platform's built-in Prometheus
+          and Grafana stack.
       - name: Infrastructure Provisioning
         description: >-
-          Provision cloud infrastructure resources using Terraform and
-          Crossplane through the platform's infrastructure API.
+          Provision cloud infrastructure resources using Terraform and Crossplane through the platform's infrastructure
+          API.
   - type: Integrations
     data:
       - name: Amazon Web Services
-        description: >-
-          Primary cloud provider with EKS, MSK, ElastiCache Redis, and
-          storage services powering the platform.
+        description: Primary cloud provider with EKS, MSK, ElastiCache Redis, and storage services powering the platform.
       - name: ArgoCD
-        description: >-
-          GitOps continuous delivery for declarative application deployment
-          and state synchronization.
+        description: GitOps continuous delivery for declarative application deployment and state synchronization.
       - name: Terraform
         description: >-
-          Infrastructure as code for cloud resource provisioning and
-          management integrated with Atlantis for PR automation.
+          Infrastructure as code for cloud resource provisioning and management integrated with Atlantis for PR
+          automation.
       - name: Crossplane
-        description: >-
-          Multi-cloud resource management extending Kubernetes for
-          cloud-agnostic infrastructure provisioning.
+        description: Multi-cloud resource management extending Kubernetes for cloud-agnostic infrastructure provisioning.
       - name: OpenTelemetry
-        description: >-
-          Distributed tracing and metrics collection across microservices
-          for observability and performance analysis.
+        description: Distributed tracing and metrics collection across microservices for observability and performance analysis.
       - name: Apache Kafka
-        description: >-
-          AWS MSK for event-driven communication between insurance
-          microservices and downstream systems.
+        description: AWS MSK for event-driven communication between insurance microservices and downstream systems.
   - url: https://www.allianz.com/en/press.html
     type: Blog
   - url: packages/allianz-future-cloud-platform-packages.yml
