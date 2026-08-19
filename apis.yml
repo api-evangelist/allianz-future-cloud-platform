@@ -28,7 +28,7 @@ description: >-
   infrastructure management, observability, and GitOps automation across Allianz's global insurance operations.
 created: '2024-01-15'
 modified: '2026-06-20'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: allianz-future-cloud-platform:allianz-future-cloud-platform-deployments-api
     name: Allianz Future Cloud Platform Deployments API
