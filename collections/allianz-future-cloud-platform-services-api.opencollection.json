@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Future Cloud Platform Deployments Services API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://platform.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Future Cloud Platform List Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.allianz.com/api/v1/services",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "insurance-policy",
+                "type": "query",
+                "description": "Filter services by Kubernetes namespace"
+              },
+              {
+                "name": "status",
+                "value": "running",
+                "type": "query",
+                "description": "Filter services by deployment status"
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum number of services to return"
+              }
+            ]
+          },
+          "docs": "List all registered microservices on the platform with their status and metadata."
+        },
+        {
+          "info": {
+            "name": "Allianz Future Cloud Platform Register Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.allianz.com/api/v1/services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new microservice on the Allianz Future Cloud Platform."
+        },
+        {
+          "info": {
+            "name": "Allianz Future Cloud Platform Get Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.allianz.com/api/v1/services/:service_id",
+            "params": [
+              {
+                "name": "service_id",
+                "value": "svc-500123",
+                "type": "path",
+                "description": "Unique identifier of the service"
+              }
+            ]
+          },
+          "docs": "Retrieve details and status of a specific microservice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

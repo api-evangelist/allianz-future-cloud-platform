@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Future Cloud Platform Services Deployments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://platform.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Future Cloud Platform List Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.allianz.com/api/v1/services/:service_id/deployments",
+            "params": [
+              {
+                "name": "service_id",
+                "value": "svc-500123",
+                "type": "path",
+                "description": "Unique identifier of the service"
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum number of deployments to return"
+              }
+            ]
+          },
+          "docs": "Retrieve the deployment history for a specific service."
+        },
+        {
+          "info": {
+            "name": "Allianz Future Cloud Platform Deploy Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://platform.allianz.com/api/v1/services/:service_id/deployments",
+            "params": [
+              {
+                "name": "service_id",
+                "value": "svc-500123",
+                "type": "path",
+                "description": "Unique identifier of the service"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a new deployment for a service with a specified version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

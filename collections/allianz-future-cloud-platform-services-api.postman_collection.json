@@ -1,0 +1,616 @@
+{
+  "item": [
+    {
+      "id": "a4eafcf2-0acf-42ea-855e-b324b8fc3440",
+      "name": "Services",
+      "description": {
+        "content": "Service registration and management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e5f4e9c-8eaa-4d2e-921b-239d506b5892",
+          "name": "Allianz Future Cloud Platform List Services",
+          "request": {
+            "name": "Allianz Future Cloud Platform List Services",
+            "description": {
+              "content": "List all registered microservices on the platform with their status and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Filter services by Kubernetes namespace"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter services by deployment status"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of services to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bc8a005-97cf-49d4-8a23-9e63ba2eee8d",
+              "name": "Services retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "insurance-policy"
+                    },
+                    {
+                      "key": "status",
+                      "value": "running"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 62,\n  \"items\": [\n    {\n      \"service_id\": \"svc-500123\",\n      \"name\": \"policy-service\",\n      \"namespace\": \"insurance-policy\",\n      \"status\": \"running\",\n      \"replicas\": 3,\n      \"version\": \"2.5.1\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1643abf-5d2f-465c-8169-89387bf35b51",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "insurance-policy"
+                    },
+                    {
+                      "key": "status",
+                      "value": "running"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e73ad24-9bfc-47c7-bd93-31a9d3a5c687",
+          "name": "Allianz Future Cloud Platform Register Service",
+          "request": {
+            "name": "Allianz Future Cloud Platform Register Service",
+            "description": {
+              "content": "Register a new microservice on the Allianz Future Cloud Platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"language\": \"<string>\",\n  \"repository_url\": \"<uri>\",\n  \"resource_requirements\": {\n    \"cpu\": \"<string>\",\n    \"memory\": \"<string>\",\n    \"cpu_limit\": \"<string>\",\n    \"memory_limit\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "650b80f0-6cf3-4012-b55d-6b842d42803b",
+              "name": "Service registered successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"claims-service\",\n  \"namespace\": \"insurance-claims\",\n  \"language\": \"kotlin\",\n  \"repository_url\": \"https://github.com/allianz/claims-service\",\n  \"resource_requirements\": {\n    \"cpu\": \"500m\",\n    \"memory\": \"512Mi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_id\": \"svc-500456\",\n  \"name\": \"claims-service\",\n  \"namespace\": \"insurance-claims\",\n  \"status\": \"pending\",\n  \"created_at\": \"2026-04-19T10:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1a075fb-720b-4ab9-af28-e3adc58266ae",
+              "name": "Invalid service configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"claims-service\",\n  \"namespace\": \"insurance-claims\",\n  \"language\": \"kotlin\",\n  \"repository_url\": \"https://github.com/allianz/claims-service\",\n  \"resource_requirements\": {\n    \"cpu\": \"500m\",\n    \"memory\": \"512Mi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7967080-1c05-435e-98d7-512bf89955c1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"claims-service\",\n  \"namespace\": \"insurance-claims\",\n  \"language\": \"kotlin\",\n  \"repository_url\": \"https://github.com/allianz/claims-service\",\n  \"resource_requirements\": {\n    \"cpu\": \"500m\",\n    \"memory\": \"512Mi\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d5631c5-643d-46f3-87cd-7129bc79ae56",
+          "name": "Allianz Future Cloud Platform Get Service",
+          "request": {
+            "name": "Allianz Future Cloud Platform Get Service",
+            "description": {
+              "content": "Retrieve details and status of a specific microservice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                ":service_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "service_id",
+                  "description": "(Required) Unique identifier of the service"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df09b3d9-7f61-4428-893a-242e5264c709",
+              "name": "Service retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service_id",
+                      "description": "(Required) Unique identifier of the service"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_id\": \"svc-500123\",\n  \"name\": \"policy-service\",\n  \"namespace\": \"insurance-policy\",\n  \"status\": \"running\",\n  \"replicas\": 3,\n  \"version\": \"2.5.1\",\n  \"created_at\": \"2026-01-01T00:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "807dacb0-d5d3-43fa-a0a0-60b3452ac76e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service_id",
+                      "description": "(Required) Unique identifier of the service"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7686776c-947d-4b50-a2d9-44b3f88c3822",
+              "name": "Service not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    ":service_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "service_id",
+                      "description": "(Required) Unique identifier of the service"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://platform.allianz.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "services:read services:write deployments:read deployments:write observability:read infrastructure:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://platform.allianz.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "91f4a5ca-6583-41a4-bcca-56a2c793a5f4",
+    "name": "Allianz Future Cloud Platform Deployments Services API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.\n\nContact Support:\n Name: Allianz Platform Engineering",
+      "type": "text/plain"
+    }
+  }
+}

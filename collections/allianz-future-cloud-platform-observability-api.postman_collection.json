@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "fb13389d-a91c-43d4-bc2a-26b6eb76bab4",
+      "name": "Observability",
+      "description": {
+        "content": "Monitoring, metrics, and alerting configuration operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1efe0319-3c79-453b-95d1-65a3f20c6d3d",
+          "name": "Allianz Future Cloud Platform Get Metrics",
+          "request": {
+            "name": "Allianz Future Cloud Platform Get Metrics",
+            "description": {
+              "content": "Retrieve platform metrics including service health, resource utilization, and throughput.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "observability",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service_id",
+                  "value": "<string>",
+                  "description": "Filter metrics by service identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_range",
+                  "value": "60",
+                  "description": "Time range for metrics in minutes"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38d5718b-45df-489c-b30a-1a98389559c6",
+              "name": "Metrics retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "observability",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service_id",
+                      "value": "svc-500123"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service_id\": \"svc-500123\",\n  \"time_range_minutes\": 60,\n  \"cpu_utilization\": 42.5,\n  \"memory_utilization\": 68.2,\n  \"request_rate\": 1250,\n  \"error_rate\": 0.12,\n  \"p99_latency_ms\": 145\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d6283d5-0609-4d7f-ba78-51f2b2b9cfa8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "observability",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service_id",
+                      "value": "svc-500123"
+                    },
+                    {
+                      "key": "time_range",
+                      "value": "60"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://platform.allianz.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "services:read services:write deployments:read deployments:write observability:read infrastructure:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://platform.allianz.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc9f6dcb-ba3c-4abc-9800-5f90ca2fc5bc",
+    "name": "Allianz Future Cloud Platform Services Deployments Observability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.\n\nContact Support:\n Name: Allianz Platform Engineering",
+      "type": "text/plain"
+    }
+  }
+}

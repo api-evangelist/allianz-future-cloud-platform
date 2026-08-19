@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "b8f30c0d-22ec-4c3e-9a3d-c5fb3d3dd7c2",
+      "name": "Namespaces",
+      "description": {
+        "content": "Kubernetes namespace management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "793944ab-94a7-4543-b388-4e9dcdf549d2",
+          "name": "Allianz Future Cloud Platform List Namespaces",
+          "request": {
+            "name": "Allianz Future Cloud Platform List Namespaces",
+            "description": {
+              "content": "List all Kubernetes namespaces managed on the platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "namespaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2021836a-f2d2-4087-aae1-f44a188c6783",
+              "name": "Namespaces retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 12,\n  \"items\": [\n    {\n      \"namespace_id\": \"ns-500111\",\n      \"name\": \"insurance-policy\",\n      \"team\": \"policy-team\",\n      \"service_count\": 8,\n      \"status\": \"active\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6240299c-ad7a-4baf-a960-28573b24f0a6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "namespaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://platform.allianz.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "services:read services:write deployments:read deployments:write observability:read infrastructure:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://platform.allianz.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "be8465d7-1d19-470f-88a0-d029bdc765ee",
+    "name": "Allianz Future Cloud Platform Services Deployments Namespaces API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.\n\nContact Support:\n Name: Allianz Platform Engineering",
+      "type": "text/plain"
+    }
+  }
+}

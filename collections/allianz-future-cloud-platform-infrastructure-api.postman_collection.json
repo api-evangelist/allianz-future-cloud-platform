@@ -1,0 +1,254 @@
+{
+  "item": [
+    {
+      "id": "eada3ace-c8b8-4068-9268-fc697cccd28f",
+      "name": "Infrastructure",
+      "description": {
+        "content": "Infrastructure provisioning and management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92f36158-9ec8-48f4-81aa-184dd8d4b2d6",
+          "name": "Allianz Future Cloud Platform Provision Resource",
+          "request": {
+            "name": "Allianz Future Cloud Platform Provision Resource",
+            "description": {
+              "content": "Provision a cloud infrastructure resource (RDS, Redis, MSK) using Crossplane.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "infrastructure",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resource_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"configuration\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17ae1881-6cee-4deb-832a-590682f7eaed",
+              "name": "Resource provisioning initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "infrastructure",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resource_type\": \"redis\",\n  \"name\": \"policy-cache\",\n  \"namespace\": \"insurance-policy\",\n  \"configuration\": {\n    \"instance_type\": \"cache.t3.medium\",\n    \"engine_version\": \"7.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resource_id\": \"infra-500222\",\n  \"resource_type\": \"redis\",\n  \"name\": \"policy-cache\",\n  \"namespace\": \"insurance-policy\",\n  \"status\": \"provisioning\",\n  \"created_at\": \"2026-04-19T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe4c884c-e425-4b2b-af0c-63b31b8643d4",
+              "name": "Invalid resource configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "infrastructure",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resource_type\": \"redis\",\n  \"name\": \"policy-cache\",\n  \"namespace\": \"insurance-policy\",\n  \"configuration\": {\n    \"instance_type\": \"cache.t3.medium\",\n    \"engine_version\": \"7.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f939a496-6086-4ebe-b7ce-a37080f57821",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "infrastructure",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resource_type\": \"redis\",\n  \"name\": \"policy-cache\",\n  \"namespace\": \"insurance-policy\",\n  \"configuration\": {\n    \"instance_type\": \"cache.t3.medium\",\n    \"engine_version\": \"7.0\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_configuration\",\n  \"message\": \"The specified service_id does not exist\",\n  \"request_id\": \"req-500999\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://platform.allianz.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "services:read services:write deployments:read deployments:write observability:read infrastructure:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://platform.allianz.com/oauth2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4461209c-5909-4fe8-8790-913bd03d529f",
+    "name": "Allianz Future Cloud Platform Services Deployments Infrastructure API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.\n\nContact Support:\n Name: Allianz Platform Engineering",
+      "type": "text/plain"
+    }
+  }
+}

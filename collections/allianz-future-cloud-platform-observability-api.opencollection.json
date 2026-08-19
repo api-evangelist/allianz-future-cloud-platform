@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Allianz Future Cloud Platform Services Deployments Observability API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://platform.allianz.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allianz Future Cloud Platform Get Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://platform.allianz.com/api/v1/observability/metrics",
+            "params": [
+              {
+                "name": "service_id",
+                "value": "svc-500123",
+                "type": "query",
+                "description": "Filter metrics by service identifier"
+              },
+              {
+                "name": "time_range",
+                "value": "60",
+                "type": "query",
+                "description": "Time range for metrics in minutes"
+              }
+            ]
+          },
+          "docs": "Retrieve platform metrics including service health, resource utilization, and throughput."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
