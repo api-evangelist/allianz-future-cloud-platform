@@ -4,6 +4,13 @@ name: Allianz Future Cloud Platform
 tags:
   - Cloud Platform
   - Enterprise
+  - Financial-Services
+  - Insurance
+  - Platform Engineering
+  - Kubernetes
+tags_raw:
+  - Cloud Platform
+  - Enterprise
   - Financial Services
   - Insurance
   - Platform Engineering
@@ -36,6 +43,8 @@ apis:
     humanURL: https://architecture.cncf.io/architectures/allianz/
     baseURL: https://platform.allianz.com/api/v1
     tags:
+      - Deployment
+    tags_raw:
       - Deployments
     properties:
       - type: OpenAPI
