@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Allianz Future Cloud Platform Services Deployments Namespaces API
   description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
@@ -67,23 +67,6 @@ components:
           description: List of namespace records
           items:
             $ref: '#/components/schemas/Namespace'
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_configuration
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified service_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
     Namespace:
       title: Namespace
       type: object
@@ -113,6 +96,23 @@ components:
           - provisioning
           - decommissioning
           example: active
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Allianz Future Cloud Platform Services Deployments Observability API
   description: Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Built on Kubernetes (EKS) with GitOps automation, providing service registration, deployment management, observability, and infrastructure provisioning for insurance microservices.
