@@ -1,38 +1,43 @@
-# Kin Score artifact — allianz-future-cloud-platform — 2026-08-10T111628
+# Kin Score artifact — allianz-future-cloud-platform — 2026-09-12T062655
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: allianz-future-cloud-platform
-  schema_version: 0.9.1
-  scored_at: '2026-08-10'
-  run_ts: 2026-08-10T111628
-  composite: 36.4
+  schema_version: 0.21.0
+  scored_at: '2026-09-12'
+  run_ts: 2026-09-12T062655
+  composite: 29.0
   band: thin
   facets:
-    discoverability: 92.6
-    contract_quality: 32.9
-    governance: 80.2
+    discoverability: 74.1
+    contract_quality: 31.2
+    contract_governance: 33.3
     operational_transparency: 5.3
-    developer_ergonomics: 21.7
-    commercial_clarity: 0.0
+    developer_ergonomics: 23.8
+    access_clarity: 0.0
   agent_readiness:
-    score: 44.6
+    score: 30.9
     band: agent-ready
     dimensions:
       spec_presence: true
       agentic_access: derived
+      reversibility_documented: false
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: negotiable
       idempotency: false
       error_semantics: verified
       openapi_examples: verified
       rate_limit_signal: false
       event_surface_described: false
       agent_skills: false
-      well_known_catalog: true
+      well_known_catalog: false
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Insurance
@@ -44,7 +49,7 @@ kin_score:
     agentic_access: derived
     conformance: derived
     contracts:
-      total: 5
-      derived: 5
+      total: 6
+      derived: 6
       coverage: 100.0
-      callable: 100.0
+      callable: 0.0
