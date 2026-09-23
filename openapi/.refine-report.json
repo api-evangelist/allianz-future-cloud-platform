@@ -1,11 +1,7 @@
 {
   "provider": "allianz-future-cloud-platform",
   "sources": [
-    "allianz-future-cloud-platform-deployments-api-openapi.yml",
-    "allianz-future-cloud-platform-infrastructure-api-openapi.yml",
-    "allianz-future-cloud-platform-namespaces-api-openapi.yml",
-    "allianz-future-cloud-platform-observability-api-openapi.yml",
-    "allianz-future-cloud-platform-services-api-openapi.yml"
+    "_ae-authored/allianz-future-cloud-platform-services.yaml"
   ],
   "outputs": [
     "allianz-future-cloud-platform-deployments-api-openapi.yml",
@@ -18,7 +14,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "allianz-future-cloud-platform-services.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "allianz-future-cloud-platform-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "allianz-future-cloud-platform-infrastructure-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "allianz-future-cloud-platform-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "allianz-future-cloud-platform-observability-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "allianz-future-cloud-platform-services-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
