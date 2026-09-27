@@ -4,7 +4,7 @@ name: Allianz Future Cloud Platform
 tags:
   - Cloud Platform
   - Enterprise
-  - Financial-Services
+  - Financial Services
   - Insurance
   - Platform Engineering
   - Kubernetes
@@ -15,6 +15,7 @@ tags_raw:
   - Insurance
   - Platform Engineering
   - Kubernetes
+  - Financial-Services
 type: Index
 deliveryModel:
   model: library

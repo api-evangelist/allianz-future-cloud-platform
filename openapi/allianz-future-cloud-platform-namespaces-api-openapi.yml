@@ -70,20 +70,6 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
-    NamespaceList:
-      title: NamespaceList
-      type: object
-      description: List of platform namespaces
-      properties:
-        total:
-          type: integer
-          description: Total number of namespaces
-          example: 12
-        items:
-          type: array
-          description: List of namespace records
-          items:
-            $ref: '#/components/schemas/Namespace'
     Namespace:
       title: Namespace
       type: object
@@ -113,6 +99,20 @@ components:
           - provisioning
           - decommissioning
           example: active
+    NamespaceList:
+      title: NamespaceList
+      type: object
+      description: List of platform namespaces
+      properties:
+        total:
+          type: integer
+          description: Total number of namespaces
+          example: 12
+        items:
+          type: array
+          description: List of namespace records
+          items:
+            $ref: '#/components/schemas/Namespace'
   securitySchemes:
     OAuth2:
       type: oauth2

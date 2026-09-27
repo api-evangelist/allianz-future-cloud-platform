@@ -75,41 +75,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    InfrastructureResource:
-      title: InfrastructureResource
-      type: object
-      description: A provisioned cloud infrastructure resource
-      properties:
-        resource_id:
-          type: string
-          description: Unique identifier for the resource
-          example: infra-500222
-        resource_type:
-          type: string
-          description: Type of infrastructure resource
-          example: redis
-        name:
-          type: string
-          description: Resource name
-          example: policy-cache
-        namespace:
-          type: string
-          description: Associated Kubernetes namespace
-          example: insurance-policy
-        status:
-          type: string
-          description: Provisioning status
-          enum:
-          - provisioning
-          - ready
-          - failed
-          - decommissioned
-          example: provisioning
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when provisioning was initiated
-          example: '2026-04-19T10:30:00Z'
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -159,6 +124,41 @@ components:
           example:
             instance_type: cache.t3.medium
             engine_version: '7.0'
+    InfrastructureResource:
+      title: InfrastructureResource
+      type: object
+      description: A provisioned cloud infrastructure resource
+      properties:
+        resource_id:
+          type: string
+          description: Unique identifier for the resource
+          example: infra-500222
+        resource_type:
+          type: string
+          description: Type of infrastructure resource
+          example: redis
+        name:
+          type: string
+          description: Resource name
+          example: policy-cache
+        namespace:
+          type: string
+          description: Associated Kubernetes namespace
+          example: insurance-policy
+        status:
+          type: string
+          description: Provisioning status
+          enum:
+          - provisioning
+          - ready
+          - failed
+          - decommissioned
+          example: provisioning
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when provisioning was initiated
+          example: '2026-04-19T10:30:00Z'
   securitySchemes:
     OAuth2:
       type: oauth2

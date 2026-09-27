@@ -155,6 +155,20 @@ components:
           - canary
           default: rolling
           example: rolling
+    DeploymentList:
+      title: DeploymentList
+      type: object
+      description: Paginated list of deployment records
+      properties:
+        total:
+          type: integer
+          description: Total number of deployments
+          example: 45
+        items:
+          type: array
+          description: List of deployment records
+          items:
+            $ref: '#/components/schemas/Deployment'
     Deployment:
       title: Deployment
       type: object
@@ -224,20 +238,6 @@ components:
           type: string
           description: Request identifier for support reference
           example: req-500999
-    DeploymentList:
-      title: DeploymentList
-      type: object
-      description: Paginated list of deployment records
-      properties:
-        total:
-          type: integer
-          description: Total number of deployments
-          example: 45
-        items:
-          type: array
-          description: List of deployment records
-          items:
-            $ref: '#/components/schemas/Deployment'
   securitySchemes:
     OAuth2:
       type: oauth2
