@@ -130,31 +130,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    DeployServiceRequest:
-      title: DeployServiceRequest
-      type: object
-      description: Request body for triggering a service deployment
-      required:
-      - version
-      - image
-      properties:
-        version:
-          type: string
-          description: Version tag to deploy
-          example: 2.6.0
-        image:
-          type: string
-          description: Container image with version tag
-          example: allianz/policy-service:2.6.0
-        strategy:
-          type: string
-          description: Deployment strategy
-          enum:
-          - rolling
-          - blue_green
-          - canary
-          default: rolling
-          example: rolling
     DeploymentList:
       title: DeploymentList
       type: object
@@ -221,6 +196,31 @@ components:
           format: date-time
           description: Timestamp when the deployment was initiated
           example: '2026-04-19T10:30:00Z'
+    DeployServiceRequest:
+      title: DeployServiceRequest
+      type: object
+      description: Request body for triggering a service deployment
+      required:
+      - version
+      - image
+      properties:
+        version:
+          type: string
+          description: Version tag to deploy
+          example: 2.6.0
+        image:
+          type: string
+          description: Container image with version tag
+          example: allianz/policy-service:2.6.0
+        strategy:
+          type: string
+          description: Deployment strategy
+          enum:
+          - rolling
+          - blue_green
+          - canary
+          default: rolling
+          example: rolling
     ErrorResponse:
       title: ErrorResponse
       type: object

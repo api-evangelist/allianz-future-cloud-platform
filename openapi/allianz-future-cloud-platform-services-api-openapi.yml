@@ -187,44 +187,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ResourceRequirements:
-      title: ResourceRequirements
+    ServiceList:
+      title: ServiceList
       type: object
-      description: Kubernetes resource requests and limits
+      description: Paginated list of platform services
       properties:
-        cpu:
-          type: string
-          description: CPU resource request in Kubernetes units
-          example: 500m
-        memory:
-          type: string
-          description: Memory resource request in Kubernetes units
-          example: 512Mi
-        cpu_limit:
-          type: string
-          description: CPU resource limit
-          example: 1000m
-        memory_limit:
-          type: string
-          description: Memory resource limit
-          example: 1Gi
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_configuration
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified service_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
+        total:
+          type: integer
+          description: Total number of registered services
+          example: 62
+        items:
+          type: array
+          description: List of service records
+          items:
+            $ref: '#/components/schemas/Service'
     Service:
       title: Service
       type: object
@@ -317,20 +293,44 @@ components:
           example: https://github.com/allianz/claims-service
         resource_requirements:
           $ref: '#/components/schemas/ResourceRequirements'
-    ServiceList:
-      title: ServiceList
+    ResourceRequirements:
+      title: ResourceRequirements
       type: object
-      description: Paginated list of platform services
+      description: Kubernetes resource requests and limits
       properties:
-        total:
-          type: integer
-          description: Total number of registered services
-          example: 62
-        items:
-          type: array
-          description: List of service records
-          items:
-            $ref: '#/components/schemas/Service'
+        cpu:
+          type: string
+          description: CPU resource request in Kubernetes units
+          example: 500m
+        memory:
+          type: string
+          description: Memory resource request in Kubernetes units
+          example: 512Mi
+        cpu_limit:
+          type: string
+          description: CPU resource limit
+          example: 1000m
+        memory_limit:
+          type: string
+          description: Memory resource limit
+          example: 1Gi
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: Standard error response
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
   securitySchemes:
     OAuth2:
       type: oauth2
