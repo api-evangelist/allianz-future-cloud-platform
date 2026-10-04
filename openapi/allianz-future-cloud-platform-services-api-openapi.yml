@@ -187,20 +187,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ServiceList:
-      title: ServiceList
+    ErrorResponse:
+      title: ErrorResponse
       type: object
-      description: Paginated list of platform services
+      description: Standard error response
       properties:
-        total:
-          type: integer
-          description: Total number of registered services
-          example: 62
-        items:
-          type: array
-          description: List of service records
-          items:
-            $ref: '#/components/schemas/Service'
+        error:
+          type: string
+          description: Error code
+          example: invalid_configuration
+        message:
+          type: string
+          description: Human-readable error description
+          example: The specified service_id does not exist
+        request_id:
+          type: string
+          description: Request identifier for support reference
+          example: req-500999
     Service:
       title: Service
       type: object
@@ -259,6 +262,41 @@ components:
           format: date-time
           description: Timestamp when the service was last updated
           example: '2026-04-15T14:30:00Z'
+    ServiceList:
+      title: ServiceList
+      type: object
+      description: Paginated list of platform services
+      properties:
+        total:
+          type: integer
+          description: Total number of registered services
+          example: 62
+        items:
+          type: array
+          description: List of service records
+          items:
+            $ref: '#/components/schemas/Service'
+    ResourceRequirements:
+      title: ResourceRequirements
+      type: object
+      description: Kubernetes resource requests and limits
+      properties:
+        cpu:
+          type: string
+          description: CPU resource request in Kubernetes units
+          example: 500m
+        memory:
+          type: string
+          description: Memory resource request in Kubernetes units
+          example: 512Mi
+        cpu_limit:
+          type: string
+          description: CPU resource limit
+          example: 1000m
+        memory_limit:
+          type: string
+          description: Memory resource limit
+          example: 1Gi
     RegisterServiceRequest:
       title: RegisterServiceRequest
       type: object
@@ -293,44 +331,6 @@ components:
           example: https://github.com/allianz/claims-service
         resource_requirements:
           $ref: '#/components/schemas/ResourceRequirements'
-    ResourceRequirements:
-      title: ResourceRequirements
-      type: object
-      description: Kubernetes resource requests and limits
-      properties:
-        cpu:
-          type: string
-          description: CPU resource request in Kubernetes units
-          example: 500m
-        memory:
-          type: string
-          description: Memory resource request in Kubernetes units
-          example: 512Mi
-        cpu_limit:
-          type: string
-          description: CPU resource limit
-          example: 1000m
-        memory_limit:
-          type: string
-          description: Memory resource limit
-          example: 1Gi
-    ErrorResponse:
-      title: ErrorResponse
-      type: object
-      description: Standard error response
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_configuration
-        message:
-          type: string
-          description: Human-readable error description
-          example: The specified service_id does not exist
-        request_id:
-          type: string
-          description: Request identifier for support reference
-          example: req-500999
   securitySchemes:
     OAuth2:
       type: oauth2
