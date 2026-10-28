@@ -1,4 +1,4 @@
-# Allianz Future Cloud Platform (allianz-future-cloud-platform)
+# Allianz Future Cloud Platform
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,152 +66,194 @@
 
 The Allianz Future Cloud Platform is an internal developer platform powering cloud-native insurance microservices at Allianz. Built on Kubernetes and AWS, it provides platform engineering capabilities including service deployment, infrastructure management, observability, and GitOps automation across Allianz's global insurance operations.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/allianz-future-cloud-platform/refs/heads/main/apis.yml)
+**Areas:** Cloud Platform · Enterprise · Financial Services · Insurance · Platform Engineering · Kubernetes
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Allianz Future Cloud Platform on APIs.io
 
-## Tags:
+Everything profiled for Allianz Future Cloud Platform is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/allianz-future-cloud-platform/](https://apis.io/providers/allianz-future-cloud-platform/)** — or go straight to one of the APIs or properties below.
 
- - Cloud Platform, Enterprise, Financial Services, Insurance, Platform Engineering, Kubernetes
+### APIs (5)
 
-## Timestamps
+- [Allianz Future Cloud Platform Deployments API](https://apis.io/apis/allianz-future-cloud-platform/allianz-future-cloud-platform-deployments-api/) — Deployment lifecycle management operations
+- [Allianz Future Cloud Platform Infrastructure API](https://apis.io/apis/allianz-future-cloud-platform/allianz-future-cloud-platform-infrastructure-api/) — Infrastructure provisioning and management operations
+- [Allianz Future Cloud Platform Namespaces API](https://apis.io/apis/allianz-future-cloud-platform/allianz-future-cloud-platform-namespaces-api/) — Kubernetes namespace management operations
+- [Allianz Future Cloud Platform Observability API](https://apis.io/apis/allianz-future-cloud-platform/allianz-future-cloud-platform-observability-api/) — Monitoring, metrics, and alerting configuration operations
+- [Allianz Future Cloud Platform Services API](https://apis.io/apis/allianz-future-cloud-platform/allianz-future-cloud-platform-services-api/) — Service registration and management operations
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Allianz Future Cloud Platform Services API
-Platform engineering APIs for managing cloud-native services on the Allianz Future Cloud Platform. Provides capabilities for service registration, deployment management, observability configuration, and infrastructure provisioning across Kubernetes clusters.
+#### MCP servers (1)
 
-**Human URL:** [https://architecture.cncf.io/architectures/allianz/](https://architecture.cncf.io/architectures/allianz/)
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags:
+- [allianz-future-cloud-platform](https://apis.io/servers/allianz-future-cloud-platform/allianz-future-cloud-platform/)
 
- - Cloud Platform, Platform Engineering, Microservices, DevOps
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://architecture.cncf.io/architectures/allianz/)
-- [Documentation](https://www.cncf.io/case-studies/allianz/)
-- [OpenAPI](openapi/allianz-future-cloud-platform-services.yaml)
-- [JSONSchema](json-schema/platform-services-service-schema.json)
-- [JSONSchema](json-schema/platform-services-deployment-schema.json)
-- [JSONStructure](json-structure/platform-services-service-structure.json)
-- [JSONLD](json-ld/allianz-future-cloud-platform-context.jsonld)
-- [Example](examples/platform-services-service-example.json)
-- [Example](examples/platform-services-deployment-example.json)
+- [Allianz Future Cloud Platform Agentic Access](https://apis.io/agentic-access/allianz-future-cloud-platform/allianz-future-cloud-platform-agentic-access/)
 
-### Allianz Insurance Policy Microservice API
-Insurance policy microservice running on the Allianz Future Cloud Platform. Provides REST APIs for policy lifecycle management including creation, endorsements, renewals, and cancellations built with Kotlin and Java on Kubernetes.
+#### JSON Schema (12)
 
-**Human URL:** [https://www.allianz.com/en/about-us/technology.html](https://www.allianz.com/en/about-us/technology.html)
+The data models the API reads and writes.
 
-#### Tags:
+- [DeployServiceRequest](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-deploy-service-request/)
+- [Deployment](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-deployment/)
+- [DeploymentList](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-deployment-list/)
+- [InfrastructureResource](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-infrastructure-resource/)
+- [MetricsResponse](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-metrics-response/)
+- [Namespace](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-namespace/)
+- [NamespaceList](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-namespace-list/)
+- [ProvisionResourceRequest](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-provision-resource-request/)
+- [RegisterServiceRequest](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-register-service-request/)
+- [ResourceRequirements](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-resource-requirements/)
+- [Service](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-service/)
+- [ServiceList](https://apis.io/schemas/allianz-future-cloud-platform/platform-services-service-list/)
 
- - Insurance, Policy Management, Microservices
+#### JSON Structure (12)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://www.allianz.com/en/about-us/technology.html)
+- [Platform Services Deploy Service Request Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-deploy-service-request-structure/)
+- [Platform Services Deployment List Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-deployment-list-structure/)
+- [Platform Services Deployment Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-deployment-structure/)
+- [Platform Services Infrastructure Resource Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-infrastructure-resource-structure/)
+- [Platform Services Metrics Response Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-metrics-response-structure/)
+- [Platform Services Namespace List Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-namespace-list-structure/)
+- [Platform Services Namespace Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-namespace-structure/)
+- [Platform Services Provision Resource Request Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-provision-resource-request-structure/)
+- [Platform Services Register Service Request Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-register-service-request-structure/)
+- [Platform Services Resource Requirements Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-resource-requirements-structure/)
+- [Platform Services Service List Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-service-list-structure/)
+- [Platform Services Service Structure](https://apis.io/json-structure/allianz-future-cloud-platform/platform-services-service-structure/)
 
-## Common Properties
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Allianz Future Cloud Platform Context](https://apis.io/jsonld/allianz-future-cloud-platform/allianz-future-cloud-platform-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Allianz Future Cloud Platform Vocabulary](https://apis.io/vocabularies/allianz-future-cloud-platform/allianz-future-cloud-platform-vocabulary/)
+
+#### Examples (12)
+
+Example requests and responses.
+
+- [Platform Services Deploy Service Request Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-deploy-service-request-example/)
+- [Platform Services Deployment Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-deployment-example/)
+- [Platform Services Deployment List Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-deployment-list-example/)
+- [Platform Services Infrastructure Resource Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-infrastructure-resource-example/)
+- [Platform Services Metrics Response Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-metrics-response-example/)
+- [Platform Services Namespace Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-namespace-example/)
+- [Platform Services Namespace List Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-namespace-list-example/)
+- [Platform Services Provision Resource Request Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-provision-resource-request-example/)
+- [Platform Services Register Service Request Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-register-service-request-example/)
+- [Platform Services Resource Requirements Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-resource-requirements-example/)
+- [Platform Services Service Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-service-example/)
+- [Platform Services Service List Example](https://apis.io/examples/allianz-future-cloud-platform/platform-services-service-list-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Allianz Future Cloud Platform Services Deployments API](https://apis.io/collections/allianz-future-cloud-platform/open-allianz-future-cloud-platform-deployments-api/)
+- [Allianz Future Cloud Platform Services Deployments Infrastructure API](https://apis.io/collections/allianz-future-cloud-platform/open-allianz-future-cloud-platform-infrastructure-api/)
+- [Allianz Future Cloud Platform Services Deployments Namespaces API](https://apis.io/collections/allianz-future-cloud-platform/open-allianz-future-cloud-platform-namespaces-api/)
+- [Allianz Future Cloud Platform Services Deployments Observability API](https://apis.io/collections/allianz-future-cloud-platform/open-allianz-future-cloud-platform-observability-api/)
+- [Allianz Future Cloud Platform Deployments Services API](https://apis.io/collections/allianz-future-cloud-platform/open-allianz-future-cloud-platform-services-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Allianz Future Cloud Platform Services Overlay](https://apis.io/overlays/allianz-future-cloud-platform/allianz-future-cloud-platform-services-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Allianz Future Cloud Platform — jsonschema rules](https://apis.io/rules/allianz-future-cloud-platform/allianz-future-cloud-platform-jsonschema-spectral-rules/)
+- [Allianz Future Cloud Platform API Rules](https://apis.io/rules/allianz-future-cloud-platform/allianz-future-cloud-platform-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Allianz Future Cloud Platform Authentication](https://apis.io/security/allianz-future-cloud-platform/allianz-future-cloud-platform-authentication/)
+- [Allianz Future Cloud Platform Domain Security](https://apis.io/security/allianz-future-cloud-platform/allianz-future-cloud-platform-domain-security/)
+- [Allianz Future Cloud Platform Vulnerability Disclosure](https://apis.io/security/allianz-future-cloud-platform/allianz-future-cloud-platform-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Allianz Future Cloud Platform Scopes](https://apis.io/scopes/allianz-future-cloud-platform/allianz-future-cloud-platform-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.allianz.com/)
-- [GitHubOrganization](https://github.com/allianz)
 - [Documentation](https://architecture.cncf.io/architectures/allianz/)
-- [SpectralRules](rules/allianz-future-cloud-platform-spectral-rules.yml)
-- [Vocabulary](vocabulary/allianz-future-cloud-platform-vocabulary.yaml)
-- [NaftikoCapability](capabilities/cloud-platform-operations.yaml)
+- [Blog](https://www.allianz.com/en/press.html)
+- [GitHub](https://github.com/allianz)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Kubernetes Platform Engineering | Internal developer platform built on Kubernetes (EKS) providing standardized deployment, scaling, and orchestration for insurance microservices. |
-| GitOps Deployment | ArgoCD and Tekton-based CI/CD pipelines enabling GitOps workflows for continuous delivery of insurance applications. |
-| Infrastructure as Code | Terraform and Crossplane-based infrastructure management enabling repeatable, auditable cloud resource provisioning. |
-| Observability Stack | Prometheus, Grafana, and OpenTelemetry based observability platform providing metrics, tracing, and alerting for platform services. |
-| Multi-tenant Architecture | Namespace-level multi-tenancy supporting multiple insurance product teams on shared Kubernetes infrastructure. |
-| Event Streaming | AWS MSK (Managed Kafka) for high-throughput event streaming between insurance microservices and downstream consumers. |
+**Kin Score 26.1** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 30.5 |
+| Contract governance | 31.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 0.0 |
 
-| Name | Description |
-|------|-------------|
-| Insurance Microservice Deployment | Deploy and manage Kotlin and Java insurance microservices on the platform with standardized CI/CD pipelines and GitOps workflows. |
-| Platform Onboarding | Onboard new insurance product teams onto the shared Kubernetes platform with pre-configured namespaces and RBAC policies. |
-| Observability and Monitoring | Configure monitoring dashboards and alerting for insurance services using the platform's built-in Prometheus and Grafana stack. |
-| Infrastructure Provisioning | Provision cloud infrastructure resources using Terraform and Crossplane through the platform's infrastructure API. |
+**Agent readiness 30.9** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Amazon Web Services | Primary cloud provider with EKS, MSK, ElastiCache Redis, and storage services powering the platform. |
-| ArgoCD | GitOps continuous delivery for declarative application deployment and state synchronization. |
-| Terraform | Infrastructure as code for cloud resource provisioning and management integrated with Atlantis for PR automation. |
-| Crossplane | Multi-cloud resource management extending Kubernetes for cloud-agnostic infrastructure provisioning. |
-| OpenTelemetry | Distributed tracing and metrics collection across microservices for observability and performance analysis. |
-| Apache Kafka | AWS MSK for event-driven communication between insurance microservices and downstream systems. |
+**Regulatory alignment 35.1** — Insurance
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/allianz-future-cloud-platform/](https://apis.io/providers/allianz-future-cloud-platform/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Allianz Future Cloud Platform Services API](openapi/allianz-future-cloud-platform-services.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Allianz Future Cloud Platform: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [platform-services-service-schema.json](json-schema/platform-services-service-schema.json)
-- [platform-services-service-list-schema.json](json-schema/platform-services-service-list-schema.json)
-- [platform-services-register-service-request-schema.json](json-schema/platform-services-register-service-request-schema.json)
-- [platform-services-resource-requirements-schema.json](json-schema/platform-services-resource-requirements-schema.json)
-- [platform-services-deployment-schema.json](json-schema/platform-services-deployment-schema.json)
-- [platform-services-deployment-list-schema.json](json-schema/platform-services-deployment-list-schema.json)
-- [platform-services-deploy-service-request-schema.json](json-schema/platform-services-deploy-service-request-schema.json)
-- [platform-services-namespace-schema.json](json-schema/platform-services-namespace-schema.json)
-- [platform-services-namespace-list-schema.json](json-schema/platform-services-namespace-list-schema.json)
-- [platform-services-metrics-response-schema.json](json-schema/platform-services-metrics-response-schema.json)
-- [platform-services-provision-resource-request-schema.json](json-schema/platform-services-provision-resource-request-schema.json)
-- [platform-services-infrastructure-resource-schema.json](json-schema/platform-services-infrastructure-resource-schema.json)
-
-### JSON Structure
-
-- [platform-services-service-structure.json](json-structure/platform-services-service-structure.json)
-- [platform-services-deployment-structure.json](json-structure/platform-services-deployment-structure.json)
-- [platform-services-metrics-response-structure.json](json-structure/platform-services-metrics-response-structure.json)
-
-### JSON-LD
-
-- [allianz-future-cloud-platform-context.jsonld](json-ld/allianz-future-cloud-platform-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Allianz Future Cloud Platform Services API](capabilities/shared/platform-services.yaml) — 8 operations for cloud platform operations
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Allianz Cloud Platform Operations](capabilities/cloud-platform-operations.yaml) | Allianz Future Cloud Platform Services API | 8 | Platform Engineer, DevOps Engineer, Insurance Product Developer |
-
-## Vocabulary
-
-- [Allianz Future Cloud Platform Vocabulary](vocabulary/allianz-future-cloud-platform-vocabulary.yaml) — Unified taxonomy mapping 5 resources, 5 actions, 1 workflow, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Allianz Future Cloud Platform Spectral Rules](rules/allianz-future-cloud-platform-spectral-rules.yml) — 23 rules across 9 categories enforcing Allianz Future Cloud Platform API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/allianz-future-cloud-platform/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
